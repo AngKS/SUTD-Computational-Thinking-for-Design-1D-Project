@@ -1,0 +1,12 @@
+
+
+# python project
+__pycache__/
+*.py[cod]
+*.so
+*DS_Store
+
+env/
+venv/
+.vscode/
+.idea/
