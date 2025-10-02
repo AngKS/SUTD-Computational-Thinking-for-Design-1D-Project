@@ -6,6 +6,7 @@ class MultiPageApp:
         self.title = title
         self.icon = icon
         self.pages = []
+        self.layout = "wide"
 
     def add_page(self, page):
         """Add a new page to the application."""
@@ -13,8 +14,11 @@ class MultiPageApp:
 
     def display(self):
         """Display the application with navigation."""
-        st.set_page_config(page_title=self.title, page_icon=self.icon)
-        st.title(f"{self.icon} {self.title}")
+        st.set_page_config(
+            page_title=self.title,
+            page_icon=self.icon,
+            layout=self.layout
+        )
 
         # Navigation sidebar
         page_titles = [f"{page.icon} {page.title}" for page in self.pages]
@@ -26,12 +30,9 @@ class MultiPageApp:
                 page.display()
                 break
     def run(self):
-        page = st.sidebar.selectbox(
-            "Welcome to the App! Select a page:",
-            [f"{page.icon} {page.title}" for page in self.pages],
-            format_func=lambda x: x.split(" ", 1)[1]  # Display only the title in the dropdown
-        )
+        page = st.navigation([f"{page.icon} {page.title}" for page in self.pages])
         page.display()
+        
 
     def __str__(self):
         return f"App(title={self.title}, icon={self.icon}, pages={len(self.pages)})"

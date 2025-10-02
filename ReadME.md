@@ -56,3 +56,5 @@ pandas
 - Dishanta Mohanty ()
 
 
+### Notes
+- https://docs.streamlit.io/develop/tutorials/multipage/dynamic-navigation
