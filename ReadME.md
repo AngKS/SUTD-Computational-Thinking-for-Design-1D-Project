@@ -4,16 +4,24 @@ This repository contains the code and resources for the 1D Project of the 10.025
 
 ## Project Overview
 
+
 ## Project Requirements:
-In groups of three, make a simple webapp using python programming and the Streamlit library to help your business make the calculations of the final price quicker.
-Step 1. Come up with any imaginary business and a list of products or services. Then think of how you might price your products/services and/or offer discounts.
-Step 2. Identify who is to use it - the cashier or the customer?
-Step 3. Design the user interface (sketch it out first!) and code the webapp!
----
 - **Good Programming Practices**
 - **Python Features**
 - **Algorithms learnt**
 - **Flexibility to Changes**
+
+## Project Prerequisites
+- Python 3.x installed on your machine.
+- Python UV package/project manager installed (Install via pip: `pip install uv`).
+```bash
+# On macOS and Linux.
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# On Windows.
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+- Basic knowledge of Python programming.
+- Familiarity with command line interface.
 
 
 ## Project Setup
