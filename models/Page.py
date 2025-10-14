@@ -1,6 +1,7 @@
 import streamlit as st
 
 class Page:
+    """Base class for application pages."""
     def __init__(self, title: str, icon: str = "📄"):
         self.title = title
         self.icon = icon

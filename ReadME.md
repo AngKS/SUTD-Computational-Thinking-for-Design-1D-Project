@@ -38,7 +38,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
     ```
 5. Run the main script to start the project.
     ```bash
-    streamlit run main.py
+    streamlit run app.py
     ```
 
 ## Project dependencies

@@ -1,10 +1,10 @@
 
 class Transaction:
+
     def __init__(self, transaction_id, amount, date, description):
         self.transaction_id = transaction_id
         self.amount = amount
         self.date = date
-        self.description = description
         self.products = []
 
     def addItem(self, product):
@@ -12,7 +12,7 @@ class Transaction:
 
     def removeItem(self, product):
         pass
-    
+
 
     def getTotal(self):
         pass

@@ -2,6 +2,7 @@ import streamlit as st
 
 
 class ProductItem():
+    """Class representing a product item in the inventory."""
     def __init__(self, id, name, price, quantity, description, category):
         self.id = id
         self.name = name
