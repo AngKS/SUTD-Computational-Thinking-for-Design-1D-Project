@@ -1,21 +1,27 @@
+import json
 from models import App
-from views.CashierPage import CashierPage
+from views.Pages import CashierPage, MainPage
+
+
+def load_inventory(file_path='inventory.json'):
+    try:
+        with open(file_path, 'r') as file:
+            inventory = json.load(file)
+        return inventory
+    except FileNotFoundError:
+        return {}
 
 def main():
     app = App.MultiPageApp(title="My Streamlit App", icon="🚀")
+    inventory = load_inventory()
 
-    # Add pages to the app
-    from models.Page import Page
-
-    home_page = Page(title="Home", icon="🏠")
     cashier_page = CashierPage()
-    about_page = Page(title="About", icon="ℹ️")
-    contact_page = Page(title="Contact", icon="📞")
+    main_page = MainPage()
 
-    app.add_page(home_page)
-    app.add_page(about_page)
+    main_page.load_inventory(inventory)
+
+    app.add_page(main_page)
     app.add_page(cashier_page)
-    app.add_page(contact_page)
 
     # Display the app
     app.display()

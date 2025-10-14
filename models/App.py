@@ -32,10 +32,10 @@ class MultiPageApp:
     def run(self):
         page = st.navigation([f"{page.icon} {page.title}" for page in self.pages])
         page.display()
-        
+
 
     def __str__(self):
         return f"App(title={self.title}, icon={self.icon}, pages={len(self.pages)})"
-    
+
     def __repr__(self):
         return self.__str__()
