@@ -1,30 +1,205 @@
 {
     "total": 25,
     "products": [
-        { "id": 1, "name": "Intel Core i7-13700K", "price": 419.99, "quantity": 15, "description": "13th Gen Intel Core processor with 16 cores and 24 threads", "category": "CPU" },
-        { "id": 2, "name": "NVIDIA GeForce RTX 4070", "price": 599.99, "quantity": 0, "description": "High-performance graphics card with 12GB GDDR6X memory", "category": "GPU" },
-        { "id": 3, "name": "Corsair Vengeance LPX 32GB DDR4", "price": 89.99, "quantity": 25, "description": "32GB DDR4-3200 memory kit with low profile design", "category": "RAM" },
-        { "id": 4, "name": "Samsung 980 PRO 1TB NVMe SSD", "price": 129.99, "quantity": 12, "description": "PCIe 4.0 NVMe SSD with 7000 MB/s read speeds", "category": "Storage" },
-        { "id": 5, "name": "ASUS ROG Strix B650-A", "price": 229.99, "quantity": 6, "description": "ATX motherboard for AMD Ryzen 7000 series processors", "category": "Motherboard" },
-        { "id": 6, "name": "Corsair RM850x 850W PSU", "price": 149.99, "quantity": 18, "description": "80+ Gold modular power supply with quiet operation", "category": "PSU" },
-        { "id": 7, "name": "Noctua NH-D15", "price": 99.99, "quantity": 22, "description": "Premium dual-tower CPU cooler with excellent performance", "category": "Cooling" },
-        { "id": 8, "name": "Fractal Design Meshify C", "price": 109.99, "quantity": 14, "description": "Compact ATX case with optimized airflow design", "category": "Case" },
-        { "id": 9, "name": "AMD Ryzen 9 7900X", "price": 549.99, "quantity": 9, "description": "12-core, 24-thread processor with 5.6 GHz boost clock", "category": "CPU" },
-        { "id": 10, "name": "Western Digital Black SN850X 2TB", "price": 199.99, "quantity": 16, "description": "High-speed PCIe Gen4 NVMe SSD for gaming", "category": "Storage" },
-        { "id": 11, "name": "G.Skill Trident Z5 RGB 64GB DDR5", "price": 299.99, "quantity": 7, "description": "64GB DDR5-6000 memory kit with RGB lighting", "category": "RAM" },
-        { "id": 12, "name": "MSI GeForce RTX 4090 Gaming X Trio", "price": 1599.99, "quantity": 3, "description": "Flagship graphics card with 24GB GDDR6X memory", "category": "GPU" },
-        { "id": 13, "name": "EVGA SuperNOVA 1000 P5", "price": 189.99, "quantity": 11, "description": "1000W 80+ Platinum fully modular power supply", "category": "PSU" },
-        { "id": 14, "name": "Arctic Liquid Freezer II 280", "price": 119.99, "quantity": 13, "description": "280mm AIO liquid CPU cooler with high performance", "category": "Cooling" },
-        { "id": 15, "name": "Lian Li PC-O11 Dynamic", "price": 149.99, "quantity": 8, "description": "Premium mid-tower case with tempered glass panels", "category": "Case" },
-        { "id": 16, "name": "Seagate Barracuda 4TB HDD", "price": 89.99, "quantity": 20, "description": "4TB 7200 RPM SATA hard drive for mass storage", "category": "Storage" },
-        { "id": 17, "name": "MSI MAG B550 Tomahawk", "price": 179.99, "quantity": 15, "description": "ATX motherboard with PCIe 4.0 support for AMD Ryzen", "category": "Motherboard" },
-        { "id": 18, "name": "be quiet! Dark Rock Pro 4", "price": 89.99, "quantity": 19, "description": "Silent CPU cooler with dual-fan design", "category": "Cooling" },
-        { "id": 19, "name": "Corsair iCUE 4000X RGB", "price": 134.99, "quantity": 12, "description": "Mid-tower case with RGB fans and airflow optimization", "category": "Case" },
-        { "id": 20, "name": "Intel Core i5-13600K", "price": 319.99, "quantity": 21, "description": "13th Gen Intel processor with 14 cores and 20 threads", "category": "CPU" },
-        { "id": 21, "name": "Crucial MX4 Thermal Paste", "price": 9.99, "quantity": 45, "description": "High-performance thermal compound for CPU cooling", "category": "Cooling" },
-        { "id": 22, "name": "ASUS TUF Gaming X570-Plus", "price": 199.99, "quantity": 10, "description": "ATX motherboard with military-grade components", "category": "Motherboard" },
-        { "id": 23, "name": "Seasonic Focus GX-750", "price": 129.99, "quantity": 17, "description": "750W 80+ Gold fully modular power supply", "category": "PSU" },
-        { "id": 24, "name": "Kingston Fury Beast 16GB DDR4", "price": 54.99, "quantity": 30, "description": "16GB DDR4-3200 gaming memory with aggressive styling", "category": "RAM" },
-        { "id": 25, "name": "AMD Radeon RX 7800 XT", "price": 499.99, "quantity": 5, "description": "High-performance graphics card with 16GB GDDR6 memory", "category": "GPU" }
+        {
+            "id": 1,
+            "name": "Intel Core i7-13700HK (BRAND NEW!!)",
+            "price": 419.99,
+            "quantity": 10,
+            "description": "13th Gen Intel Core processor with 16 cores and 24 threads",
+            "category": "CPU"
+        },
+        {
+            "id": 2,
+            "name": "NVIDIA GeForce RTX 4070",
+            "price": 599.99,
+            "quantity": 0,
+            "description": "High-performance graphics card with 12GB GDDR6X memory",
+            "category": "GPU"
+        },
+        {
+            "id": 3,
+            "name": "Corsair Vengeance LPX 32GB DDR4",
+            "price": 89.99,
+            "quantity": 25,
+            "description": "32GB DDR4-3200 memory kit with low profile design",
+            "category": "RAM"
+        },
+        {
+            "id": 4,
+            "name": "Samsung 980 PRO 1TB NVMe SSD",
+            "price": 129.99,
+            "quantity": 12,
+            "description": "PCIe 4.0 NVMe SSD with 7000 MB/s read speeds",
+            "category": "Storage"
+        },
+        {
+            "id": 5,
+            "name": "ASUS ROG Strix B650-A",
+            "price": 229.99,
+            "quantity": 6,
+            "description": "ATX motherboard for AMD Ryzen 7000 series processors",
+            "category": "Motherboard"
+        },
+        {
+            "id": 6,
+            "name": "Corsair RM850x 850W PSU",
+            "price": 149.99,
+            "quantity": 18,
+            "description": "80+ Gold modular power supply with quiet operation",
+            "category": "PSU"
+        },
+        {
+            "id": 7,
+            "name": "Noctua NH-D15",
+            "price": 99.99,
+            "quantity": 22,
+            "description": "Premium dual-tower CPU cooler with excellent performance",
+            "category": "Cooling"
+        },
+        {
+            "id": 8,
+            "name": "Fractal Design Meshify C",
+            "price": 109.99,
+            "quantity": 14,
+            "description": "Compact ATX case with optimized airflow design",
+            "category": "Case"
+        },
+        {
+            "id": 9,
+            "name": "AMD Ryzen 9 7900X",
+            "price": 549.99,
+            "quantity": 9,
+            "description": "12-core, 24-thread processor with 5.6 GHz boost clock",
+            "category": "CPU"
+        },
+        {
+            "id": 10,
+            "name": "Western Digital Black SN850X 2TB",
+            "price": 199.99,
+            "quantity": 16,
+            "description": "High-speed PCIe Gen4 NVMe SSD for gaming",
+            "category": "Storage"
+        },
+        {
+            "id": 11,
+            "name": "G.Skill Trident Z5 RGB 64GB DDR5",
+            "price": 299.99,
+            "quantity": 7,
+            "description": "64GB DDR5-6000 memory kit with RGB lighting",
+            "category": "RAM"
+        },
+        {
+            "id": 12,
+            "name": "MSI GeForce RTX 4090 Gaming X Trio",
+            "price": 1599.99,
+            "quantity": 3,
+            "description": "Flagship graphics card with 24GB GDDR6X memory",
+            "category": "GPU"
+        },
+        {
+            "id": 13,
+            "name": "EVGA SuperNOVA 1000 P5",
+            "price": 189.99,
+            "quantity": 11,
+            "description": "1000W 80+ Platinum fully modular power supply",
+            "category": "PSU"
+        },
+        {
+            "id": 14,
+            "name": "Arctic Liquid Freezer II 280",
+            "price": 119.99,
+            "quantity": 13,
+            "description": "280mm AIO liquid CPU cooler with high performance",
+            "category": "Cooling"
+        },
+        {
+            "id": 15,
+            "name": "Lian Li PC-O11 Dynamic",
+            "price": 149.99,
+            "quantity": 8,
+            "description": "Premium mid-tower case with tempered glass panels",
+            "category": "Case"
+        },
+        {
+            "id": 16,
+            "name": "Seagate Barracuda 4TB HDD",
+            "price": 89.99,
+            "quantity": 20,
+            "description": "4TB 7200 RPM SATA hard drive for mass storage",
+            "category": "Storage"
+        },
+        {
+            "id": 17,
+            "name": "MSI MAG B550 Tomahawk",
+            "price": 179.99,
+            "quantity": 15,
+            "description": "ATX motherboard with PCIe 4.0 support for AMD Ryzen",
+            "category": "Motherboard"
+        },
+        {
+            "id": 18,
+            "name": "be quiet! Dark Rock Pro 4",
+            "price": 89.99,
+            "quantity": 19,
+            "description": "Silent CPU cooler with dual-fan design",
+            "category": "Cooling"
+        },
+        {
+            "id": 19,
+            "name": "Corsair iCUE 4000X RGB",
+            "price": 134.99,
+            "quantity": 12,
+            "description": "Mid-tower case with RGB fans and airflow optimization",
+            "category": "Case"
+        },
+        {
+            "id": 20,
+            "name": "Intel Core i5-13600K",
+            "price": 319.99,
+            "quantity": 21,
+            "description": "13th Gen Intel processor with 14 cores and 20 threads",
+            "category": "CPU"
+        },
+        {
+            "id": 21,
+            "name": "Crucial MX4 Thermal Paste",
+            "price": 9.99,
+            "quantity": 45,
+            "description": "High-performance thermal compound for CPU cooling",
+            "category": "Cooling"
+        },
+        {
+            "id": 22,
+            "name": "ASUS TUF Gaming X570-Plus",
+            "price": 199.99,
+            "quantity": 10,
+            "description": "ATX motherboard with military-grade components",
+            "category": "Motherboard"
+        },
+        {
+            "id": 23,
+            "name": "Seasonic Focus GX-750",
+            "price": 129.99,
+            "quantity": 17,
+            "description": "750W 80+ Gold fully modular power supply",
+            "category": "PSU"
+        },
+        {
+            "id": 24,
+            "name": "Kingston Fury Beast 16GB DDR4",
+            "price": 54.99,
+            "quantity": 30,
+            "description": "16GB DDR4-3200 gaming memory with aggressive styling",
+            "category": "RAM"
+        },
+        {
+            "id": 25,
+            "name": "AMD Radeon RX 7800 XT",
+            "price": 499.99,
+            "quantity": 5,
+            "description": "High-performance graphics card with 16GB GDDR6 memory",
+            "category": "GPU"
+        }
     ]
 }

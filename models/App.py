@@ -1,4 +1,5 @@
 import streamlit as st
+from models.Page import Page
 
 class MultiPageApp:
     """Main application class to manage pages and navigation."""
@@ -8,9 +9,18 @@ class MultiPageApp:
         self.pages = []
         self.layout = "wide"
 
-    def add_page(self, page):
+    def add_page(self, page: Page):
         """Add a new page to the application."""
         self.pages.append(page)
+
+    def goto_page(self, page_title: str):
+        """Navigate to a specific page by title."""
+        # Update session state to trigger navigation
+        if 'current_page' not in st.session_state:
+            st.session_state.current_page = page_title
+        else:
+            st.session_state.current_page = page_title
+        st.rerun()
 
     def display(self):
         """Display the application with navigation."""
@@ -20,18 +30,37 @@ class MultiPageApp:
             layout=self.layout
         )
 
-        # Navigation sidebar
-        page_titles = [f"{page.icon} {page.title}" for page in self.pages]
-        selected_page = st.sidebar.selectbox("Navigate to", page_titles)
+        # Initialize session state for current page
+        if 'current_page' not in st.session_state:
+            st.session_state.current_page = self.pages[0].title
 
-        # Display the selected page
+        # Navigation navbar
+        page_titles = [f"{page.icon} {page.title}" for page in self.pages]
+        current_page_with_icon = f"{self._get_page_icon(st.session_state.current_page)} {st.session_state.current_page}"
+
+        selected_page = st.segmented_control(
+            "",
+            page_titles,
+            default=current_page_with_icon
+        )
+
+        # Extract title without icon
+        selected_title = selected_page.split(" ", 1)[1]
+
+        # Update session state if page changed
+        if selected_title != st.session_state.current_page:
+            st.session_state.current_page = selected_title
+            st.rerun()
+
+        # Display the current page
         for page in self.pages:
-            if f"{page.icon} {page.title}" == selected_page:
+            if page.title == st.session_state.current_page:
                 page.display()
                 break
 
-    def __str__(self):
-        return f"App(title={self.title}, icon={self.icon}, pages={len(self.pages)})"
-
-    def __repr__(self):
-        return self.__str__()
+    def _get_page_icon(self, page_title: str) -> str:
+        """Helper method to get the icon for a page by title."""
+        for page in self.pages:
+            if page.title == page_title:
+                return page.icon
+        return "📄"

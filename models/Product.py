@@ -5,7 +5,7 @@ class ProductItem():
     """Class representing a product item in the inventory."""
     _stylesheet_loaded = False  # Class variable to track if stylesheet is loaded
     
-    def __init__(self, id, name, price, quantity, description, category):
+    def __init__(self, id: str, name: str, price: float, quantity: int, description: str, category: str):
         self.id = id
         self.name = name
         self.price = price
@@ -44,7 +44,7 @@ class ProductItem():
                 <p>{self.description}</p>
                 <p class="price">${self.price:.2f}</p>
                 <p class="stock">{self.quantity}</p>
-                <button onClick="{addItem(self)}">Add to Cart</button>
+                <button onClick="{self.addToCart()}">Add to Cart</button>
             </div>
             """)
             # st.write(f"**{self.name}** - ${self.price:.2f}")
