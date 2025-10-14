@@ -1,3 +1,4 @@
+from models.Product import ProductItem
 
 class Transaction:
 
@@ -8,6 +9,8 @@ class Transaction:
         self.products = []
 
     def addItem(self, product):
+        product = ProductItem(id="001", name="Sample Product", price=9.99, quantity=1, description="A sample product", category="Sample Category")
+
         pass
 
     def removeItem(self, product):
