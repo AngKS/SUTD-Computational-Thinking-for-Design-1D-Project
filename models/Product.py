@@ -35,7 +35,7 @@ class ProductItem():
                 <p>{self.description}</p>
                 <p class="price">${self.price:.2f}</p>
                 <p class="stock">{self.quantity}</p>
-                <button onClick="{self.addToCart}">Add to Cart</button>
+                <button onClick="{addItem(self)}">Add to Cart</button>
             </div>
             """)
             # st.write(f"**{self.name}** - ${self.price:.2f}")
