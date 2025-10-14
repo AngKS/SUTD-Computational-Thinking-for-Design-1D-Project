@@ -1,5 +1,5 @@
 # 10.025 Computational Thinking for Design - 1D Project
-
+![Project Banner](assets/banner.png)
 This repository contains the code and resources for the 1D Project of the 10.025 Computational Thinking for Design course at SUTD.
 
 ## Project Overview

@@ -29,7 +29,7 @@ class MultiPageApp:
             page_icon=self.icon,
             layout=self.layout
         )
-
+        st.image("assets/banner.png")
         # Initialize session state for current page
         if 'current_page' not in st.session_state:
             st.session_state.current_page = self.pages[0].title
