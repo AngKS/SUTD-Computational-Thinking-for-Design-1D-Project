@@ -37,20 +37,27 @@ class MultiPageApp:
         # Navigation navbar
         page_titles = [f"{page.icon} {page.title}" for page in self.pages]
         current_page_with_icon = f"{self._get_page_icon(st.session_state.current_page)} {st.session_state.current_page}"
+        col1, col3 = st.columns([3, 1])
+        with col1:
+            selected_page = st.segmented_control(
+                "",
+                page_titles,
+                default=current_page_with_icon,
+                label_visibility="hidden"
+            )
 
-        selected_page = st.segmented_control(
-            "",
-            page_titles,
-            default=current_page_with_icon
-        )
+            # Extract title without icon
+            selected_title = selected_page.split(" ", 1)[1]
 
-        # Extract title without icon
-        selected_title = selected_page.split(" ", 1)[1]
-
-        # Update session state if page changed
-        if selected_title != st.session_state.current_page:
-            st.session_state.current_page = selected_title
-            st.rerun()
+            # Update session state if page changed
+            if selected_title != st.session_state.current_page:
+                st.session_state.current_page = selected_title
+                st.rerun()
+        with col3:
+            st.button(
+                "Cart",
+                icon=":material/shopping_cart:",
+            )
 
         # Display the current page
         for page in self.pages:

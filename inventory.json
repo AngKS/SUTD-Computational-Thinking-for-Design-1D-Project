@@ -3,8 +3,8 @@
     "products": [
         {
             "id": 1,
-            "name": "Intel Core i7-13700HK (BRAND NEW!!)",
-            "price": 419.99,
+            "name": "Intel Core i7-13700HK",
+            "price": 409.0,
             "quantity": 10,
             "description": "13th Gen Intel Core processor with 16 cores and 24 threads",
             "category": "CPU"

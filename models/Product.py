@@ -37,36 +37,68 @@ class ProductItem():
         return "alert('Item added to cart!')"
 
     def show(self):
+        product_card = st.container(
+            border=True,
+        )
+        card_btn = "Add to Cart"
         if self.is_in_stock:
-            st.html(f"""
-            <div class="product-card">
-                <h3>{self.name}</h3>
-                <p>{self.description}</p>
-                <p class="price">${self.price:.2f}</p>
-                <p class="stock">{self.quantity}</p>
-                <button onClick="{self.addToCart()}">Add to Cart</button>
-            </div>
-            """)
-            # st.write(f"**{self.name}** - ${self.price:.2f}")
-            # st.write(f"_{self.description}_")
-            # st.write(f"Category: {self.category}")
-            # st.write(f"Stock: {self.quantity}")
+            with product_card:
+                if self.image_url:
+                    st.image(self.image_url, width=150)
+                st.subheader(self.name)
+                st.write(self.description)
+                st.write(f"**Price:** ${self.price:.2f}")
+                st.write(f"**Category:** {self.category}")
+                st.write(f"**Stock:** {self.quantity}")
+                if st.button(
+                    card_btn,
+                    key=self.id,
+                    icon=":material/add:",
+                    width="stretch",
+                    type="primary"
+                ):
+                    card_btn = "Added!"
+                    st.rerun()
+                    self.addToCart()
+
+            # st.html(f"""
+            # <div class="product-card">
+            #     <h3>{self.name}</h3>
+            #     <p>{self.description}</p>
+            #     <p class="price">${self.price:.2f}</p>
+            #     <p class="stock">{self.quantity}</p>
+            #     <button onClick="{self.addToCart()}">Add to Cart</button>
+            # </div>
+            # """)
+            # # st.write(f"**{self.name}** - ${self.price:.2f}")
+            # # st.write(f"_{self.description}_")
+            # # st.write(f"Category: {self.category}")
+            # # st.write(f"Stock: {self.quantity}")
         else:
-            st.html(f"""
-            <div class="product-card out-of-stock">
-                <h3>{self.name}</h3>
-                <p>{self.description}</p>
-                <p class="price">${self.price:.2f}</p>
-                <p class="out-of-stock">Out of Stock</p>
-                <button disabled>Add to Cart</button>
-            </div>
-            """)
-            # st.write(f"**{self.name}** - ${self.price:.2f}")
-            # st.write(f"_{self.description}_")
-            # st.write(f"Category: {self.category}")
-            # st.write("**Out of Stock**")
-            if self.image_url:
-                st.image(self.image_url, width=150)
+            # st.html(f"""
+            # <div class="product-card out-of-stock">
+            #     <h3>{self.name}</h3>
+            #     <p>{self.description}</p>
+            #     <p class="price">${self.price:.2f}</p>
+            #     <p class="out-of-stock">Out of Stock</p>
+            #     <button disabled>Add to Cart</button>
+            # </div>
+            # """)
+            # # st.write(f"**{self.name}** - ${self.price:.2f}")
+            # # st.write(f"_{self.description}_")
+            # # st.write(f"Category: {self.category}")
+            # # st.write("**Out of Stock**")
+            # if self.image_url:
+            #     st.image(self.image_url, width=150)
+            with product_card:
+                if self.image_url:
+                    st.image(self.image_url, width=150)
+                st.header(self.name)
+                st.write(self.description)
+                st.write(f"**Price:** ${self.price:.2f}")
+                st.write(f"**Category:** {self.category}")
+                st.error("Out of Stock", icon="⚠️")
+
 
 
     def __repr__(self):

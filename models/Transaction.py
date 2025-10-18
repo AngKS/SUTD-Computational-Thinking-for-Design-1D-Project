@@ -12,8 +12,12 @@ class Transaction:
         self.products.append(item)
 
 
-    def removeItem(self, product: ProductItem):
+    def removeItem(self, item: ProductItem):
         pass
+
+    def clearItems(self):
+        self.products = []
+        
 
 
     def getTotal(self):
