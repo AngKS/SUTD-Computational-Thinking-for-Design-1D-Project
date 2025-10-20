@@ -84,6 +84,47 @@
                 "discount_percent": 15
             },
             "total_amount": 909.4575
+        },
+        {
+            "transaction_id": "TXN20251021045633",
+            "date": "2025-10-21 04:56:33",
+            "customer": {
+                "email": "john.doe@me.com",
+                "name": "John Doe",
+                "address": "123 Main St, Springfield",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 4,
+                    "name": "Samsung 980 PRO 1TB NVMe SSD",
+                    "price": 129.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 8,
+                    "name": "Fractal Design Meshify C",
+                    "price": 109.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 10,
+                    "name": "Western Digital Black SN850X 2TB",
+                    "price": 199.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 9,
+                    "name": "AMD Ryzen 9 7900X",
+                    "price": 549.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "SUMMER10",
+                "discount_percent": 10
+            },
+            "total_amount": 890.964
         }
     ]
 }

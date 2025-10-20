@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 class UIRenderer:
     def __init__(self):
@@ -10,7 +9,9 @@ class UIRenderer:
             'markdown': self._render_markdown,
             'dataframe': self._render_dataframe,
             'bar_chart': self._render_bar_chart,
-            'line_chart': self._render_line_chart
+            'line_chart': self._render_line_chart,
+            'area_chart': self._render_area_chart,
+            'scatter_chart': self._render_scatter_chart
         }
     
     def render(self, gpt_response):
@@ -94,12 +95,16 @@ class UIRenderer:
             st.error(f"Error creating dataframe: {str(e)}")
     
     def _render_bar_chart(self, config):
-        """Render a bar chart"""
+        """Render a bar chart using Streamlit's native st.bar_chart()"""
         title = config.get("title")
         data = config.get("data")
         x = config.get("x")
         y = config.get("y")
         color = config.get("color")
+        x_label = config.get("x_label")
+        y_label = config.get("y_label")
+        horizontal = config.get("horizontal", False)
+        stack = config.get("stack")
         
         if title:
             st.subheader(title)
@@ -118,31 +123,31 @@ class UIRenderer:
                 st.error("Invalid data format for bar chart")
                 return
             
-            # If x and y are specified, use matplotlib for customization
-            if x and y and x in df.columns and y in df.columns:
-                fig, ax = plt.subplots(figsize=(10, 6))
-                ax.bar(df[x], df[y], color='#1f77b4')
-                ax.set_xlabel(x.capitalize())
-                ax.set_ylabel(y.capitalize())
-                if title:
-                    ax.set_title(title)
-                plt.xticks(rotation=45, ha='right')
-                plt.tight_layout()
-                st.pyplot(fig)
-                plt.close()
-            else:
-                # Use simple streamlit bar chart
-                st.bar_chart(df)
+            # Use Streamlit's native bar chart with parameters
+            st.bar_chart(
+                df,
+                x=x,
+                y=y,
+                color=color,
+                x_label=x_label,
+                y_label=y_label,
+                horizontal=horizontal,
+                stack=stack,
+                use_container_width=True
+            )
         
         except Exception as e:
             st.error(f"Error creating bar chart: {str(e)}")
     
     def _render_line_chart(self, config):
-        """Render a line chart"""
+        """Render a line chart using Streamlit's native st.line_chart()"""
         title = config.get("title")
         data = config.get("data")
         x = config.get("x")
         y = config.get("y")
+        color = config.get("color")
+        x_label = config.get("x_label")
+        y_label = config.get("y_label")
         
         if title:
             st.subheader(title)
@@ -161,22 +166,102 @@ class UIRenderer:
                 st.error("Invalid data format for line chart")
                 return
             
-            # If x and y are specified, use matplotlib for customization
-            if x and y and x in df.columns and y in df.columns:
-                fig, ax = plt.subplots(figsize=(10, 6))
-                ax.plot(df[x], df[y], marker='o', linewidth=2, markersize=6)
-                ax.set_xlabel(x.capitalize())
-                ax.set_ylabel(y.capitalize())
-                if title:
-                    ax.set_title(title)
-                plt.xticks(rotation=45, ha='right')
-                plt.grid(True, alpha=0.3)
-                plt.tight_layout()
-                st.pyplot(fig)
-                plt.close()
-            else:
-                # Use simple streamlit line chart
-                st.line_chart(df)
+            # Use Streamlit's native line chart with parameters
+            st.line_chart(
+                df,
+                x=x,
+                y=y,
+                color=color,
+                x_label=x_label,
+                y_label=y_label,
+                use_container_width=True
+            )
         
         except Exception as e:
             st.error(f"Error creating line chart: {str(e)}")
+    
+    def _render_area_chart(self, config):
+        """Render an area chart using Streamlit's native st.area_chart()"""
+        title = config.get("title")
+        data = config.get("data")
+        x = config.get("x")
+        y = config.get("y")
+        color = config.get("color")
+        x_label = config.get("x_label")
+        y_label = config.get("y_label")
+        stack = config.get("stack")
+        
+        if title:
+            st.subheader(title)
+        
+        if not data:
+            st.info("No data to display")
+            return
+        
+        try:
+            # Convert to DataFrame
+            if isinstance(data, list):
+                df = pd.DataFrame(data)
+            elif isinstance(data, dict):
+                df = pd.DataFrame(data)
+            else:
+                st.error("Invalid data format for area chart")
+                return
+            
+            # Use Streamlit's native area chart with parameters
+            st.area_chart(
+                df,
+                x=x,
+                y=y,
+                color=color,
+                x_label=x_label,
+                y_label=y_label,
+                stack=stack,
+                use_container_width=True
+            )
+        
+        except Exception as e:
+            st.error(f"Error creating area chart: {str(e)}")
+    
+    def _render_scatter_chart(self, config):
+        """Render a scatter chart using Streamlit's native st.scatter_chart()"""
+        title = config.get("title")
+        data = config.get("data")
+        x = config.get("x")
+        y = config.get("y")
+        color = config.get("color")
+        size = config.get("size")
+        x_label = config.get("x_label")
+        y_label = config.get("y_label")
+        
+        if title:
+            st.subheader(title)
+        
+        if not data:
+            st.info("No data to display")
+            return
+        
+        try:
+            # Convert to DataFrame
+            if isinstance(data, list):
+                df = pd.DataFrame(data)
+            elif isinstance(data, dict):
+                df = pd.DataFrame(data)
+            else:
+                st.error("Invalid data format for scatter chart")
+                return
+            
+            # Use Streamlit's native scatter chart with parameters
+            st.scatter_chart(
+                df,
+                x=x,
+                y=y,
+                color=color,
+                size=size,
+                x_label=x_label,
+                y_label=y_label,
+                use_container_width=True
+            )
+        
+        except Exception as e:
+            st.error(f"Error creating scatter chart: {str(e)}")

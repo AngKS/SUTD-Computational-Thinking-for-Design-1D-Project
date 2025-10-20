@@ -6,8 +6,8 @@
             "description": "10% off for summer sale"
         },
         {
-            "code": "FREESHIP",
-            "discount_percent": 0,
+            "code": "STUDENT5",
+            "discount_percent": 5,
             "description": "Free shipping on orders over $50"
         },
         {
