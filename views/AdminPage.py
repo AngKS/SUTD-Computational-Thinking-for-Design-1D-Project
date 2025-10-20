@@ -1,25 +1,8 @@
 import streamlit as st
-import json
 from models.Page import Page
 from models.App import MultiPageApp
-from models.Product import ProductItem
-from models.Transaction import Transaction
-from auth import app as auth
-
-def read_data(file_path: str) -> dict:
-    try:
-        with open(file_path, 'r') as file:
-            data = json.load(file)
-        return data
-    except FileNotFoundError:
-        return {}
-
-def write_data(file_path, data: dict) -> bool:
-    with open(file_path, 'w') as file:
-        json.dump(data, file, indent=4)
-        return True
-    return False
-
+from utils import read_data, write_data
+import auth
 
 class AdminPage(Page):
     def __init__(self, _app: MultiPageApp):
@@ -110,64 +93,3 @@ class AdminPage(Page):
                 self.transaction_management()
             with tab3:
                 self.inventory_management()
-
-class CheckoutPage(Page):
-    def __init__(self, _app: MultiPageApp, transaction: Transaction = None):
-        super().__init__(title="Cart", icon="🛒")
-        self.app = _app
-        self.transaction = transaction
-
-    def display(self):
-        st.title(f"{self.icon} {self.title}")
-        if self.transaction is None:
-            st.warning("You currently have no items in your cart.", icon="⚠️")
-            if st.button("Go back to shop"):
-                self.app.goto_page("Shop")
-            return
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            with st.form("cart_form"):
-                st.header("Billing Information")
-                st.text_input("Full Name")
-                st.text_input("Email Address")
-                st.text_input("Phone Number")
-                st.text_area("Shipping Address")
-                st.form_submit_button("Submit", width="stretch")
-        with col2:
-            st.header("Order Summary")
-            cart_items = st.expander("View Cart Items", expanded=False)
-            with cart_items:
-                if self.transaction is None or not self.transaction.products:
-                    st.error("Your cart is empty.", icon="⚠️")
-                else:
-                    for products in self.transaction.products:
-                        st.write(f"{products.name} - ${products.getPrice():.2f}")
-                        st.markdown("---")
-
-            st.write("Item 1: $10.00")
-            st.write("Item 2: $15.00")
-            st.write("Total: $25.00")
-            # discount code section
-            st.text_input("Discount Code", placeholder="Enter code here")
-class MainPage(Page):
-    def __init__(self, _app: MultiPageApp):
-        super().__init__(title="Shop", icon="🏪")
-        self.app = _app
-        self._products = [ProductItem(**item) for item in read_data('inventory.json').get('products', [])]
-
-    @property
-    def products(self):
-        return self._products if hasattr(self, '_products') else []
-
-    def display(self):
-        # super().display()
-        st.write("Welcome to the Main Page of the application!")
-        st.write("Use the sidebar to navigate to different sections.")
-
-        # Show product grid (mobile: single column, desktop: multi-column)
-        cols = st.columns(3)  # Adjust number of columns as needed
-        for i, product in enumerate(self.products):
-            with cols[i % 3]:  # Change 3 to the number of columns
-                product.show()
-
-

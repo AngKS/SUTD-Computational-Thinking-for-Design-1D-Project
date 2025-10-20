@@ -1,5 +1,7 @@
 from models import App
-from views.Pages import AdminPage, MainPage, CheckoutPage
+from views.AdminPage import AdminPage
+from views.MainPage import MainPage
+from views.CheckoutPage import CheckoutPage
 
 
 def main():
