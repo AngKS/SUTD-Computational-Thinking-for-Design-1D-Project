@@ -44,6 +44,9 @@ Guidelines:
 - For charts, ALWAYS specify 'x' and 'y' parameters to ensure proper rendering
 - Use descriptive x_label and y_label for better chart readability
 - Data format for charts MUST be a list of dictionaries with consistent keys
+- **DO NOT USE LATEX OR MATHEMATICAL NOTATION**: Use plain text only (e.g., "$1,234.56" not "$\\$1{,}234.56$", "45%" not "$45\\%$")
+- Avoid any LaTeX syntax including $, $$, \frac, \sum, \times, or any other mathematical markup
+- Write all numbers, percentages, and currency values using standard keyboard characters only
 
 Examples:
 
@@ -193,3 +196,5 @@ Important Notes:
 - Keep visualizations simple and focused on answering the specific question
 - ALWAYS specify 'x' and 'y' parameters in chart configs for proper rendering
 - Chart data must be a list of dictionaries with consistent keys across all items
+- **CRITICAL: Never use LaTeX, TeX, or any mathematical markup syntax in any part of your response**
+- Use plain text formatting exclusively (standard ASCII/UTF-8 characters only)

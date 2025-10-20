@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import traceback
 
 class UIRenderer:
     def __init__(self):
@@ -43,6 +44,91 @@ class UIRenderer:
             
             except Exception as e:
                 st.error(f"Error rendering component {idx + 1}: {str(e)}")
+    
+    def render_streaming(self, stream_generator):
+        """
+        Render components incrementally as they arrive from stream.
+        
+        Args:
+            stream_generator: Generator yielding stream results
+            
+        Returns:
+            Dict with final response data (for caching)
+        """
+        from services.streaming_container import StreamingContainer
+        
+        # Create streaming container
+        container = StreamingContainer()
+        
+        # Track final response for caching
+        final_response = {
+            "summary": None,
+            "components": []
+        }
+        
+        try:
+            for result in stream_generator:
+                result_type = result.get("type")
+                
+                if result_type == "summary_partial":
+                    # Display partial summary as it streams
+                    partial_text = result.get("content", "")
+                    container.update_summary_partial(partial_text)
+                
+                elif result_type == "summary":
+                    # Display complete summary
+                    summary_text = result.get("content", "")
+                    container.update_summary(summary_text)
+                    final_response["summary"] = summary_text
+                    
+                elif result_type == "component":
+                    # Display component
+                    component_data = result.get("data", {})
+                    component_index = result.get("index", 0)
+                    
+                    container.add_component(component_data, self)
+                    final_response["components"].append(component_data)
+                    
+                    # Update status (silent - no visible update to avoid clutter)
+                    # container.update_status(
+                    #     f"Rendered component {component_index}",
+                    #     status_type="info"
+                    # )
+                    
+                elif result_type == "error":
+                    # Display error
+                    error_msg = result.get("message", "Unknown error")
+                    is_fatal = result.get("fatal", False)
+                    
+                    container.show_error(error_msg)
+                    
+                    if is_fatal:
+                        break
+                        
+                elif result_type == "warning":
+                    # Display warning
+                    warning_msg = result.get("message", "")
+                    container.update_status(warning_msg, status_type="warning")
+                    
+                elif result_type == "complete":
+                    # Stream complete
+                    container.show_complete()
+                    
+                elif result_type == "cancelled":
+                    # User cancelled
+                    container.update_status(
+                        "⏸️ Generation stopped by user",
+                        status_type="warning"
+                    )
+                    break
+            
+            return final_response
+            
+        except Exception as e:
+            container.show_error(f"Rendering error: {str(e)}")
+            with st.expander("Error Details"):
+                st.code(traceback.format_exc())
+            return final_response
     
     def _render_metric(self, config):
         """Render a metric component"""

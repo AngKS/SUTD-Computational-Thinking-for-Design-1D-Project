@@ -253,7 +253,7 @@ class AdminPage(Page):
         self._render_ai_analytics()
     
     def _render_ai_analytics(self):
-        """Render the generative UI analytics section"""
+        """Render the generative UI analytics section with streaming support"""
         st.subheader("🤖 AI Analytics Assistant")
         st.caption("Ask questions about your store data in natural language")
         
@@ -269,6 +269,12 @@ class AdminPage(Page):
                 """)
             return
         
+        # Initialize session state for streaming
+        if 'streaming_active' not in st.session_state:
+            st.session_state.streaming_active = False
+        if 'stop_stream' not in st.session_state:
+            st.session_state.stop_stream = False
+        
         # Data source selector and examples toggle
         col1, col2 = st.columns([3, 1])
         with col1:
@@ -276,14 +282,20 @@ class AdminPage(Page):
                 "Data sources to query:",
                 ["Transactions", "Inventory", "Promo Codes"],
                 default=["Transactions"],
-                key="ai_data_sources"
+                key="ai_data_sources",
+                disabled=st.session_state.streaming_active  # Disable during streaming
             )
         with col2:
             st.write("")  # Spacing
-            show_examples = st.toggle("Show examples", value=False, key="show_examples")
+            show_examples = st.toggle(
+                "Show examples",
+                value=False,
+                key="show_examples",
+                disabled=st.session_state.streaming_active
+            )
         
         # Example queries (collapsible)
-        if show_examples:
+        if show_examples and not st.session_state.streaming_active:
             with st.expander("📝 Example Questions", expanded=True):
                 example_queries = [
                     "What are the top 5 best-selling products?",
@@ -297,42 +309,65 @@ class AdminPage(Page):
                 for i, example in enumerate(example_queries):
                     with cols[i % 2]:
                         if st.button(f"💡 {example}", key=f"example_{i}", use_container_width=True):
-                            st.session_state.ai_query_input = example
+                            # Delete the key first, then let the widget recreate it with the new value
+                            if 'ai_query_input' in st.session_state:
+                                del st.session_state['ai_query_input']
+                            # Store the example to be used as default value
+                            st.session_state.ai_query_prefill = example
                             st.rerun()
         
-        # Query input
+        # Query input - use prefill value if available
+        prefill_value = st.session_state.pop('ai_query_prefill', '')
         user_query = st.text_area(
             "Your question:",
+            value=prefill_value,
             placeholder="e.g., What are the top 5 best-selling products?",
             height=100,
-            key="ai_query_input"
+            key="ai_query_input",
+            disabled=st.session_state.streaming_active
         )
         
         # Submit and clear buttons
         col1, col2, col3 = st.columns([1, 1, 2])
+        
         with col1:
-            analyze_button = st.button("🔍 Analyze", type="primary", use_container_width=True)
+            if not st.session_state.streaming_active:
+                analyze_button = st.button(
+                    "🔍 Analyze",
+                    type="primary",
+                    use_container_width=True
+                )
+            else:
+                analyze_button = False
+                
         with col2:
-            if st.button("🗑️ Clear", use_container_width=True):
-                st.session_state.ai_query_input = ""
-                if 'ai_response' in st.session_state:
-                    del st.session_state['ai_response']
-                if 'ai_cache' in st.session_state:
-                    st.session_state.ai_cache = {}
-                st.rerun()
+            if st.session_state.streaming_active:
+                # Show stop button during streaming
+                if st.button("⏹️ Stop", type="secondary", use_container_width=True):
+                    st.session_state.stop_stream = True
+                    st.session_state.streaming_active = False
+                    st.rerun()
+            else:
+                # Show clear button when not streaming
+                if st.button("🗑️ Clear", use_container_width=True):
+                    # Delete the session state key to clear the widget
+                    if 'ai_query_input' in st.session_state:
+                        del st.session_state['ai_query_input']
+                    if 'ai_response' in st.session_state:
+                        del st.session_state['ai_response']
+                    if 'ai_cache' in st.session_state:
+                        st.session_state.ai_cache = {}
+                    st.rerun()
         
-        # Process query
+        # Process query with streaming
         if analyze_button and user_query.strip():
-            self._process_ai_query(user_query, data_sources)
-        
-        # Display previous results if available
-        if 'ai_response' in st.session_state:
-            st.divider()
-            st.subheader("📊 Analysis Results")
-            self.ui_renderer.render(st.session_state.ai_response)
+            st.session_state.streaming_active = True
+            st.session_state.stop_stream = False
+            self._process_ai_query_streaming(user_query, data_sources)
+            st.session_state.streaming_active = False
     
     def _process_ai_query(self, query, data_sources):
-        """Process AI query and store results in session state"""
+        """Process AI query and store results in session state (non-streaming fallback)"""
         if not data_sources:
             st.warning("⚠️ Please select at least one data source to query.")
             return
@@ -373,6 +408,70 @@ class AdminPage(Page):
                 st.error(f"❌ Error: {str(e)}")
                 with st.expander("Error Details"):
                     st.code(traceback.format_exc())
+    
+    def _process_ai_query_streaming(self, query, data_sources):
+        """Process AI query with streaming and real-time UI updates"""
+        if not data_sources:
+            st.warning("⚠️ Please select at least one data source to query.")
+            return
+        
+        # Check cache
+        cache_key = f"{query}_{'-'.join(sorted(data_sources))}"
+        if 'ai_cache' not in st.session_state:
+            st.session_state.ai_cache = {}
+        
+        # Use cached response if available
+        if cache_key in st.session_state.ai_cache:
+            st.session_state.ai_response = st.session_state.ai_cache[cache_key]
+            st.info("📦 Loaded from cache")
+            st.session_state.streaming_active = False
+            st.rerun()
+            return
+        
+        # Show streaming indicator
+        st.divider()
+        st.subheader("📊 Live Analysis")
+        
+        # Prepare data context
+        data_context = self._prepare_data_for_ai(data_sources)
+        
+        # Create stop signal callback
+        def check_stop_signal():
+            return st.session_state.get('stop_stream', False)
+        
+        try:
+            # Start streaming
+            stream_generator = self.ai_service.query_stream_with_cancellation(
+                query,
+                data_context,
+                check_stop_signal
+            )
+            
+            # Render streaming results
+            final_response = self.ui_renderer.render_streaming(stream_generator)
+            
+            # Cache the result if complete
+            if final_response.get("summary") and final_response.get("components"):
+                st.session_state.ai_response = final_response
+                st.session_state.ai_cache[cache_key] = final_response
+                
+                # Limit cache size
+                if len(st.session_state.ai_cache) > 10:
+                    oldest_key = next(iter(st.session_state.ai_cache))
+                    del st.session_state.ai_cache[oldest_key]
+                
+                # Show raw JSON response in expander
+                with st.expander("🔍 View Raw JSON Response"):
+                    st.json(final_response)
+        
+        except Exception as e:
+            st.error(f"❌ Error: {str(e)}")
+            with st.expander("Error Details"):
+                st.code(traceback.format_exc())
+        
+        finally:
+            st.session_state.streaming_active = False
+            st.session_state.stop_stream = False
     
     def _prepare_data_for_ai(self, sources):
         """Prepare data context from selected sources"""

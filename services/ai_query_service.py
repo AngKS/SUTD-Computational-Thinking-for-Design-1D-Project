@@ -9,7 +9,10 @@ class AIQueryService:
         if not config.OPENAI_API_KEY:
             raise ValueError("OPENAI_API_KEY not found in environment variables. Please create a .env file with your API key.")
         
-        self.client = OpenAI(api_key=config.OPENAI_API_KEY)
+        self.client = OpenAI(
+            api_key=config.OPENAI_API_KEY,
+            base_url="https://api.groq.com/openai/v1"
+        )
         self.model = config.OPENAI_MODEL
         self.max_tokens = config.MAX_TOKENS
         self.temperature = config.TEMPERATURE
@@ -174,6 +177,166 @@ class AIQueryService:
             raise Exception(f"Failed after {max_retries} attempts: {last_error}")
         else:
             raise Exception("Failed to get response from AI service")
+    
+    def query_stream(self, user_question, data_context):
+        """
+        Stream query to OpenAI and yield components as they become complete.
+        
+        Args:
+            user_question: Natural language query from user
+            data_context: Dict with transactions, inventory, promocodes data
+            
+        Yields:
+            Dict with type "summary", "component", "error", "warning", or "complete"
+        """
+        from services.streaming_json_parser import StreamingJSONParser
+        
+        if not user_question or not user_question.strip():
+            yield {
+                "type": "error",
+                "message": "Query cannot be empty",
+                "fatal": True
+            }
+            return
+        
+        # Validate query length
+        if len(user_question) > 500:
+            yield {
+                "type": "error",
+                "message": "Query is too long. Please keep it under 500 characters.",
+                "fatal": True
+            }
+            return
+        
+        # Prepare data context
+        formatted_context = self.prepare_data_context(data_context)
+        
+        if not formatted_context or formatted_context.strip() == "":
+            yield {
+                "type": "error",
+                "message": "No data available to query. Please select at least one data source.",
+                "fatal": True
+            }
+            return
+        
+        # Build user message
+        user_message = f"{user_question}\n\nDATA CONTEXT:\n{formatted_context}"
+        
+        # Initialize parser
+        parser = StreamingJSONParser()
+        
+        try:
+            # Call OpenAI API with streaming
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": self.system_prompt},
+                    {"role": "user", "content": user_message}
+                ],
+                max_completion_tokens=self.max_tokens,
+                response_format={"type": "json_object"},
+                stream=True,
+                stream_options={"include_usage": True}
+            )
+            
+            # Process stream
+            for chunk in response:
+                # Get delta content
+                delta = chunk.choices[0].delta if chunk.choices else None
+                
+                if delta and delta.content:
+                    # Feed to parser
+                    results = parser.feed(delta.content)
+                    
+                    # Yield any completed objects
+                    for result in results:
+                        if result["type"] == "fatal_error":
+                            # Stop streaming on fatal error
+                            yield result
+                            return
+                        else:
+                            yield result
+                
+                # Check for finish reason
+                if chunk.choices and chunk.choices[0].finish_reason:
+                    finish_reason = chunk.choices[0].finish_reason
+                    
+                    if finish_reason == "stop":
+                        # Normal completion
+                        if not parser.is_complete():
+                            # Stream ended but JSON incomplete
+                            partial = parser.get_partial_result()
+                            yield {
+                                "type": "warning",
+                                "message": "Stream ended with incomplete JSON",
+                                "partial_result": partial
+                            }
+                    elif finish_reason == "length":
+                        # Hit token limit
+                        yield {
+                            "type": "warning",
+                            "message": "Response truncated due to length limit. Results may be incomplete."
+                        }
+                    elif finish_reason == "content_filter":
+                        # Content filtered
+                        yield {
+                            "type": "error",
+                            "message": "Response blocked by content filter",
+                            "fatal": True
+                        }
+            
+            # Stream complete - yield final stats
+            yield {
+                "type": "complete",
+                "summary_extracted": parser.summary_extracted,
+                "components_count": parser.components_yielded
+            }
+            
+        except Exception as e:
+            error_msg = str(e)
+            
+            # Handle specific OpenAI errors
+            if "rate_limit" in error_msg.lower():
+                yield {
+                    "type": "error",
+                    "message": "Rate limit exceeded. Please try again in a moment.",
+                    "fatal": True
+                }
+            elif "api_key" in error_msg.lower() or "authentication" in error_msg.lower():
+                yield {
+                    "type": "error",
+                    "message": "Invalid API key. Please check your .env file configuration.",
+                    "fatal": True
+                }
+            else:
+                yield {
+                    "type": "error",
+                    "message": f"Error calling OpenAI API: {error_msg}",
+                    "fatal": True
+                }
+    
+    def query_stream_with_cancellation(self, user_question, data_context, stop_signal_callback):
+        """
+        Stream query with support for user cancellation.
+        
+        Args:
+            user_question: Natural language query
+            data_context: Data to analyze
+            stop_signal_callback: Function that returns True if user wants to stop
+            
+        Yields:
+            Stream results (same as query_stream)
+        """
+        for result in self.query_stream(user_question, data_context):
+            # Check if user wants to stop
+            if stop_signal_callback and stop_signal_callback():
+                yield {
+                    "type": "cancelled",
+                    "message": "Generation stopped by user"
+                }
+                return
+            
+            yield result
     
     def _validate_response(self, response):
         """Validate that the response has the expected structure"""
