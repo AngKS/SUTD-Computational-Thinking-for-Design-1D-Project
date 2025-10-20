@@ -1,5 +1,7 @@
 import streamlit as st
 
+# Parent or base class, basic structure and properties other pages inherit from.
+
 class Page:
     """Base class for application pages."""
     def __init__(self, title: str, icon: str = "📄"):

@@ -1,6 +1,7 @@
 import streamlit as st
 from models.Page import Page
 
+# Handle Page Navigation
 class MultiPageApp:
     """Main application class to manage pages and navigation."""
     def __init__(self, title: str, icon: str = "🌐"):
@@ -53,11 +54,11 @@ class MultiPageApp:
             if selected_title != st.session_state.current_page:
                 st.session_state.current_page = selected_title
                 st.rerun()
-        with col3:
-            st.button(
-                "Cart",
-                icon=":material/shopping_cart:",
-            )
+        # with col3:
+        #     st.button(
+        #         "Cart",
+        #         icon=":material/shopping_cart:",
+        #     )
 
         # Display the current page
         for page in self.pages:
