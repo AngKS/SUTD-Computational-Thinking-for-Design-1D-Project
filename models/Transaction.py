@@ -1,12 +1,21 @@
 from models.Product import ProductItem
 from utils import read_data, write_data
 import streamlit as st
+from datetime import datetime as dt
 class Transaction:
     def __init__(self, transaction_id, date=None):
         self.transaction_id = transaction_id
         self.date = date
         self.cart_items = {}  # Dictionary: {product_id: {'product': ProductItem, 'quantity': int}}
         self.promo_code = None
+
+    @staticmethod
+    def create_new_transaction():
+        """Factory method to create a new transaction instance with auto-generated ID and timestamp"""
+        return Transaction(
+            transaction_id=f"TXN{dt.now().strftime('%Y%m%d%H%M%S')}",
+            date=dt.now().strftime("%Y-%m-%d %H:%M:%S")
+        )
 
     def addItem(self, product, quantity=1):
         """Add a product to the cart or increase its quantity with stock validation"""
@@ -172,8 +181,15 @@ class Transaction:
             return False
 
     def clearCart(self):
-        """Empty the entire cart"""
+        """Empty the entire cart and clear billing info."""
         self.cart_items = {}
+        self.promo_code = None
+        # clear billing info from session state
+        st.session_state['billing_email'] = ''
+        st.session_state['billing_name'] = ''
+        st.session_state['billing_address'] = ''
+        st.session_state['billing_country'] = ''
+
 
     def __repr__(self):
         return f"Transaction(id={self.transaction_id}, items={len(self.cart_items)}, total=${self.getTotal():.2f})"

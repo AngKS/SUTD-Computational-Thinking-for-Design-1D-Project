@@ -1,8 +1,46 @@
 {
     "transactions": [
         {
-            "transaction_id": "4b47e496-2a05-4ba6-b583-67384749f322",
-            "date": "2025-10-21 03:45:57",
+            "transaction_id": "9f7c1c56-55bf-4a41-aaa2-30840e7a1d1a",
+            "date": "2025-10-21 03:53:30",
+            "customer": {
+                "email": "angkahshin@gmail.com",
+                "name": "Ang Kah Shin",
+                "address": "123 Palm Drive #01-001",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 1,
+                    "name": "Intel Core i7-13700K",
+                    "price": 419.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 4,
+                    "name": "Samsung 980 PRO 1TB NVMe SSD",
+                    "price": 129.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 5,
+                    "name": "ASUS ROG Strix B650-A",
+                    "price": 229.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 3,
+                    "name": "Corsair Vengeance LPX 32GB DDR4",
+                    "price": 89.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": null,
+            "total_amount": 869.96
+        },
+        {
+            "transaction_id": "9f7c1cd8-55bf-4a41-aaa2-30840e7a1d1a",
+            "date": "2025-10-21 03:53:30",
             "customer": {
                 "email": "john.doe@me.com",
                 "name": "John Doe",
@@ -21,10 +59,31 @@
                     "name": "Corsair Vengeance LPX 32GB DDR4",
                     "price": 89.99,
                     "quantity": 1
+                },
+                {
+                    "product_id": 6,
+                    "name": "Corsair RM850x 850W PSU",
+                    "price": 149.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 18,
+                    "name": "be quiet! Dark Rock Pro 4",
+                    "price": 89.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 20,
+                    "name": "Intel Core i5-13600K",
+                    "price": 319.99,
+                    "quantity": 1
                 }
             ],
-            "promo_code": null,
-            "total_amount": 509.98
+            "promo_code": {
+                "code": "WELCOME15",
+                "discount_percent": 15
+            },
+            "total_amount": 909.4575
         }
     ]
 }

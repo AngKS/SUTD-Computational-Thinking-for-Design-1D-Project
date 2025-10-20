@@ -2,7 +2,6 @@ from models import App, Transaction
 from views.AdminPage import AdminPage
 from views.MainPage import MainPage
 from views.CheckoutPage import CheckoutPage
-import uuid
 from datetime import datetime as dt
 import streamlit as st
 # Application Launcher
@@ -10,9 +9,9 @@ import streamlit as st
 def main():
     app = App.MultiPageApp(title="KSMD Store", icon="./assets/KSMD Logo.png")
     
-    # Initialize transaction only if it doesn't exist
+    # Initialize transaction only if it doesn't exist using factory method
     if 'transaction' not in st.session_state:
-        st.session_state.transaction = Transaction.Transaction(transaction_id = str(uuid.uuid4()), date = dt.now().strftime("%Y-%m-%d %H:%M:%S"))
+        st.session_state.transaction = Transaction.Transaction.create_new_transaction()
 
     admin_page = AdminPage(app)
     main_page = MainPage(app)

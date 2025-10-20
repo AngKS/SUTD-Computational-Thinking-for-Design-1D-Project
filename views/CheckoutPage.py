@@ -34,7 +34,7 @@ class CheckoutPage(Page):
         email = st.text_input("Email Address", value = st.session_state.get('billing_email', ''))
         if email and not validate_email(email):
             errors['email'] = "Invalid email address."
-        
+        st.divider()
         st.write("Shipping information")
         name = st.text_input("Name", value = st.session_state.get('billing_name', ''))
         if name and not validate_name(name):
@@ -192,6 +192,8 @@ class CheckoutPage(Page):
                             st.success("Order placed successfully!")
                             time.sleep(0.8)
                             transaction.clearCart()
+                            # Replace with new transaction instance
+                            st.session_state.transaction = Transaction.create_new_transaction()
                         else:
                             st.error("Failed to place order. Please try again.")
                         st.rerun()
