@@ -119,86 +119,87 @@ class AdminPage(Page):
         if not filtered_transactions:
             st.warning("No transactions match your search criteria.")
             return
-
-        for idx, transaction in enumerate(filtered_transactions):
-            transaction_id = transaction.get('transaction_id', 'N/A')
-            with st.expander(
-                f"🧾 Transaction<{transaction_id}> - ${transaction.get('total_amount', 0):.2f}",
-                expanded=(idx == 0)  # Expand first transaction by default
-            ):
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    st.markdown("**📋 Transaction Details**")
-                    st.write(f"**ID:** `{transaction_id}`")
-                    st.write(f"**Date:** {transaction.get('date', 'N/A')}")
-                    promo_code = transaction.get('promo_code')
-                    if promo_code:
-                        st.write(f"**Promo Code:** {promo_code}")
-                    else:
-                        st.write("**Promo Code:** None")
-                    st.write(f"**Total Amount:** ${transaction.get('total_amount', 0):.2f}")
-                
-                with col2:
-                    st.markdown("**👤 Customer Information**")
-                    customer = transaction.get('customer', {})
-                    st.write(f"**Name:** {customer.get('name', 'N/A')}")
-                    st.write(f"**Email:** {customer.get('email', 'N/A')}")
-                    st.write(f"**Address:** {customer.get('address', 'N/A')}")
-                    st.write(f"**Country:** {customer.get('country', 'N/A')}")
-                
-                st.markdown("---")
-                st.markdown("**🛒 Items Purchased**")
-                
-                items = transaction.get('items', [])
-                if items:
-                    # Create a table view of items
-                    items_df = pd.DataFrame(items)
-                    # Reorder columns for better display
-                    if not items_df.empty:
-                        column_order = ['product_id', 'name', 'quantity', 'price']
-                        items_df = items_df[[col for col in column_order if col in items_df.columns]]
-                        # Format price column
-                        if 'price' in items_df.columns:
-                            items_df['price'] = items_df['price'].apply(lambda x: f"${x:.2f}")
-                        st.dataframe(items_df, use_container_width=True, hide_index=True)
-                        
-                        # Calculate subtotal
-                        subtotal = sum(item.get('price', 0) * item.get('quantity', 0) for item in items)
-                        st.write(f"**Subtotal:** ${subtotal:.2f}")
-                else:
-                    st.info("No items in this transaction.")
-                
-                # Delete button for this transaction
-                st.markdown("---")
-                col1, col2, col3 = st.columns([2, 1, 1])
-                with col3:
-                    if st.button(f"🗑️ Delete Transaction", key=f"delete_{transaction_id}", type="secondary"):
-                        # Confirm deletion
-                        st.session_state[f"confirm_delete_{transaction_id}"] = True
-                        st.rerun()
-                
-                # Confirmation dialog
-                if st.session_state.get(f"confirm_delete_{transaction_id}", False):
-                    st.warning("⚠️ Are you sure you want to delete this transaction? This action cannot be undone!")
-                    col1, col2, col3 = st.columns([2, 1, 1])
+        container = st.container(height=1000)
+        with container:
+            for idx, transaction in enumerate(filtered_transactions):
+                transaction_id = transaction.get('transaction_id', 'N/A')
+                with st.expander(
+                    f"🧾 Transaction<{transaction_id}> - ${transaction.get('total_amount', 0):.2f}",
+                    expanded=(idx == 0)  # Expand first transaction by default
+                ):
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.markdown("**📋 Transaction Details**")
+                        st.write(f"**ID:** `{transaction_id}`")
+                        st.write(f"**Date:** {transaction.get('date', 'N/A')}")
+                        promo_code = transaction.get('promo_code')
+                        if promo_code:
+                            st.write(f"**Promo Code:** {promo_code}")
+                        else:
+                            st.write("**Promo Code:** None")
+                        st.write(f"**Total Amount:** ${transaction.get('total_amount', 0):.2f}")
+                    
                     with col2:
-                        if st.button("Cancel", key=f"cancel_{transaction_id}"):
-                            del st.session_state[f"confirm_delete_{transaction_id}"]
-                            st.rerun()
+                        st.markdown("**👤 Customer Information**")
+                        customer = transaction.get('customer', {})
+                        st.write(f"**Name:** {customer.get('name', 'N/A')}")
+                        st.write(f"**Email:** {customer.get('email', 'N/A')}")
+                        st.write(f"**Address:** {customer.get('address', 'N/A')}")
+                        st.write(f"**Country:** {customer.get('country', 'N/A')}")
+                    
+                    st.markdown("---")
+                    st.markdown("**🛒 Items Purchased**")
+                    
+                    items = transaction.get('items', [])
+                    if items:
+                        # Create a table view of items
+                        items_df = pd.DataFrame(items)
+                        # Reorder columns for better display
+                        if not items_df.empty:
+                            column_order = ['product_id', 'name', 'quantity', 'price']
+                            items_df = items_df[[col for col in column_order if col in items_df.columns]]
+                            # Format price column
+                            if 'price' in items_df.columns:
+                                items_df['price'] = items_df['price'].apply(lambda x: f"${x:.2f}")
+                            st.dataframe(items_df, use_container_width=True, hide_index=True)
+                            
+                            # Calculate subtotal
+                            subtotal = sum(item.get('price', 0) * item.get('quantity', 0) for item in items)
+                            st.write(f"**Subtotal:** ${subtotal:.2f}")
+                    else:
+                        st.info("No items in this transaction.")
+                    
+                    # Delete button for this transaction
+                    st.markdown("---")
+                    col1, col2, col3 = st.columns([2, 1, 1])
                     with col3:
-                        if st.button("✓ Confirm Delete", key=f"confirm_{transaction_id}", type="primary"):
-                            # Delete the transaction
-                            self.transactions["transactions"] = [
-                                t for t in self.transactions["transactions"]
-                                if t.get('transaction_id') != transaction_id
-                            ]
-                            if write_data('transactions.json', self.transactions):
+                        if st.button(f"🗑️ Delete Transaction", key=f"delete_{transaction_id}", type="secondary"):
+                            # Confirm deletion
+                            st.session_state[f"confirm_delete_{transaction_id}"] = True
+                            st.rerun()
+                    
+                    # Confirmation dialog
+                    if st.session_state.get(f"confirm_delete_{transaction_id}", False):
+                        st.warning("⚠️ Are you sure you want to delete this transaction? This action cannot be undone!")
+                        col1, col2, col3 = st.columns([2, 1, 1])
+                        with col2:
+                            if st.button("Cancel", key=f"cancel_{transaction_id}"):
                                 del st.session_state[f"confirm_delete_{transaction_id}"]
-                                st.success(f"Transaction {transaction_id[:8]}... deleted successfully!")
                                 st.rerun()
-                            else:
-                                st.error("Failed to delete transaction. Please try again.")
+                        with col3:
+                            if st.button("✓ Confirm Delete", key=f"confirm_{transaction_id}", type="primary"):
+                                # Delete the transaction
+                                self.transactions["transactions"] = [
+                                    t for t in self.transactions["transactions"]
+                                    if t.get('transaction_id') != transaction_id
+                                ]
+                                if write_data('transactions.json', self.transactions):
+                                    del st.session_state[f"confirm_delete_{transaction_id}"]
+                                    st.success(f"Transaction {transaction_id[:8]}... deleted successfully!")
+                                    st.rerun()
+                                else:
+                                    st.error("Failed to delete transaction. Please try again.")
 
         st.divider()
 
@@ -248,8 +249,6 @@ class AdminPage(Page):
                 st.success("Promotional codes updated successfully!")
 
     def main_dashboard(self):
-        
-        
         # AI Analytics Section
         self._render_ai_analytics()
     
@@ -310,7 +309,7 @@ class AdminPage(Page):
         )
         
         # Submit and clear buttons
-        col1, col2 = st.columns([1, 1, 2])
+        col1, col2, col3 = st.columns([1, 1, 2])
         with col1:
             analyze_button = st.button("🔍 Analyze", type="primary", use_container_width=True)
         with col2:

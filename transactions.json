@@ -166,6 +166,471 @@
                 "discount_percent": 5
             },
             "total_amount": 1044.962
+        },
+        {
+            "transaction_id": "TXN20251015102345",
+            "date": "2025-10-15 10:23:45",
+            "customer": {
+                "email": "sarah.chen@outlook.com",
+                "name": "Sarah Chen",
+                "address": "456 Orchard Road #12-34",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 12,
+                    "name": "MSI GeForce RTX 4090 Gaming X Trio",
+                    "price": 1599.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 29,
+                    "name": "Intel Core i9-13900K",
+                    "price": 589.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 11,
+                    "name": "G.Skill Trident Z5 RGB 64GB DDR5",
+                    "price": 299.99,
+                    "quantity": 2
+                },
+                {
+                    "product_id": 27,
+                    "name": "Samsung 980 PRO 2TB NVMe SSD",
+                    "price": 219.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": null,
+            "total_amount": 3009.95
+        },
+        {
+            "transaction_id": "TXN20251016143022",
+            "date": "2025-10-16 14:30:22",
+            "customer": {
+                "email": "michael.tan@yahoo.com",
+                "name": "Michael Tan",
+                "address": "789 Tampines Street 71 #05-12",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 24,
+                    "name": "Kingston Fury Beast 16GB DDR4",
+                    "price": 54.99,
+                    "quantity": 2
+                },
+                {
+                    "product_id": 21,
+                    "name": "Crucial MX4 Thermal Paste",
+                    "price": 9.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 16,
+                    "name": "Seagate Barracuda 4TB HDD",
+                    "price": 89.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "STUDENT5",
+                "discount_percent": 5
+            },
+            "total_amount": 199.463
+        },
+        {
+            "transaction_id": "TXN20251017091520",
+            "date": "2025-10-17 09:15:20",
+            "customer": {
+                "email": "emily.wong@gmail.com",
+                "name": "Emily Wong",
+                "address": "321 Bukit Timah Road #03-45",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 25,
+                    "name": "AMD Radeon RX 7800 XT",
+                    "price": 499.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 36,
+                    "name": "AMD Ryzen 7 7700X",
+                    "price": 349.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 17,
+                    "name": "MSI MAG B550 Tomahawk",
+                    "price": 179.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 23,
+                    "name": "Seasonic Focus GX-750",
+                    "price": 129.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 14,
+                    "name": "Arctic Liquid Freezer II 280",
+                    "price": 119.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "SUMMER10",
+                "discount_percent": 10
+            },
+            "total_amount": 1151.955
+        },
+        {
+            "transaction_id": "TXN20251017165430",
+            "date": "2025-10-17 16:54:30",
+            "customer": {
+                "email": "david.lim@sutd.edu.sg",
+                "name": "David Lim",
+                "address": "8 Somapah Road, SUTD",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 20,
+                    "name": "Intel Core i5-13600K",
+                    "price": 319.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 2,
+                    "name": "NVIDIA GeForce RTX 4070",
+                    "price": 599.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 26,
+                    "name": "Corsair Vengeance LPX 16GB DDR4",
+                    "price": 49.99,
+                    "quantity": 2
+                },
+                {
+                    "product_id": 35,
+                    "name": "Western Digital Black SN850X 1TB",
+                    "price": 119.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "STUDENT5",
+                "discount_percent": 5
+            },
+            "total_amount": 1064.7525
+        },
+        {
+            "transaction_id": "TXN20251018081234",
+            "date": "2025-10-18 08:12:34",
+            "customer": {
+                "email": "rachel.ng@outlook.com",
+                "name": "Rachel Ng",
+                "address": "15 Marina Boulevard #20-01",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 7,
+                    "name": "Noctua NH-D15",
+                    "price": 99.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 8,
+                    "name": "Fractal Design Meshify C",
+                    "price": 109.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 21,
+                    "name": "Crucial MX4 Thermal Paste",
+                    "price": 9.99,
+                    "quantity": 2
+                }
+            ],
+            "promo_code": null,
+            "total_amount": 229.96
+        },
+        {
+            "transaction_id": "TXN20251018154522",
+            "date": "2025-10-18 15:45:22",
+            "customer": {
+                "email": "kevin.goh@gmail.com",
+                "name": "Kevin Goh",
+                "address": "88 East Coast Road #07-12",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 37,
+                    "name": "MSI GeForce RTX 4080 Gaming X Trio",
+                    "price": 1199.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 31,
+                    "name": "Corsair RM1000x 1000W PSU",
+                    "price": 199.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 32,
+                    "name": "Arctic Liquid Freezer II 360",
+                    "price": 139.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 33,
+                    "name": "Lian Li PC-O11 Dynamic EVO",
+                    "price": 179.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "WELCOME15",
+                "discount_percent": 15
+            },
+            "total_amount": 1460.9575
+        },
+        {
+            "transaction_id": "TXN20251019093015",
+            "date": "2025-10-19 09:30:15",
+            "customer": {
+                "email": "lisa.koh@nus.edu.sg",
+                "name": "Lisa Koh",
+                "address": "21 Lower Kent Ridge Road, NUS",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 38,
+                    "name": "Seagate Barracuda 2TB HDD",
+                    "price": 54.99,
+                    "quantity": 3
+                },
+                {
+                    "product_id": 24,
+                    "name": "Kingston Fury Beast 16GB DDR4",
+                    "price": 54.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "STUDENT5",
+                "discount_percent": 5
+            },
+            "total_amount": 199.7145
+        },
+        {
+            "transaction_id": "TXN20251019173345",
+            "date": "2025-10-19 17:33:45",
+            "customer": {
+                "email": "william.teo@hotmail.com",
+                "name": "William Teo",
+                "address": "50 Jurong Gateway Road #15-30",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 9,
+                    "name": "AMD Ryzen 9 7900X",
+                    "price": 549.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 30,
+                    "name": "ASUS ROG Strix B650-E",
+                    "price": 289.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 34,
+                    "name": "G.Skill Trident Z5 RGB 32GB DDR5",
+                    "price": 169.99,
+                    "quantity": 2
+                },
+                {
+                    "product_id": 13,
+                    "name": "EVGA SuperNOVA 1000 P5",
+                    "price": 189.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 19,
+                    "name": "Corsair iCUE 4000X RGB",
+                    "price": 134.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "SUMMER10",
+                "discount_percent": 10
+            },
+            "total_amount": 1386.8235
+        },
+        {
+            "transaction_id": "TXN20251020085512",
+            "date": "2025-10-20 08:55:12",
+            "customer": {
+                "email": "amanda.lau@gmail.com",
+                "name": "Amanda Lau",
+                "address": "101 Yishun Avenue 5 #04-23",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 1,
+                    "name": "Intel Core i7-13700K",
+                    "price": 419.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 28,
+                    "name": "NVIDIA GeForce RTX 4070 Ti",
+                    "price": 799.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 3,
+                    "name": "Corsair Vengeance LPX 32GB DDR4",
+                    "price": 89.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 4,
+                    "name": "Samsung 980 PRO 1TB NVMe SSD",
+                    "price": 129.99,
+                    "quantity": 2
+                },
+                {
+                    "product_id": 6,
+                    "name": "Corsair RM850x 850W PSU",
+                    "price": 149.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": null,
+            "total_amount": 1719.94
+        },
+        {
+            "transaction_id": "TXN20251020141823",
+            "date": "2025-10-20 14:18:23",
+            "customer": {
+                "email": "james.tan@smu.edu.sg",
+                "name": "James Tan",
+                "address": "81 Victoria Street, SMU",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 21,
+                    "name": "Crucial MX4 Thermal Paste",
+                    "price": 9.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 18,
+                    "name": "be quiet! Dark Rock Pro 4",
+                    "price": 89.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 24,
+                    "name": "Kingston Fury Beast 16GB DDR4",
+                    "price": 54.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "STUDENT5",
+                "discount_percent": 5
+            },
+            "total_amount": 147.2145
+        },
+        {
+            "transaction_id": "TXN20251020193345",
+            "date": "2025-10-20 19:33:45",
+            "customer": {
+                "email": "jessica.chua@yahoo.com",
+                "name": "Jessica Chua",
+                "address": "33 Serangoon Garden Way #02-14",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 40,
+                    "name": "Corsair iCUE 5000X RGB",
+                    "price": 179.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 15,
+                    "name": "Lian Li PC-O11 Dynamic",
+                    "price": 149.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 14,
+                    "name": "Arctic Liquid Freezer II 280",
+                    "price": 119.99,
+                    "quantity": 2
+                }
+            ],
+            "promo_code": {
+                "code": "WELCOME15",
+                "discount_percent": 15
+            },
+            "total_amount": 484.57
+        },
+        {
+            "transaction_id": "TXN20251021001234",
+            "date": "2025-10-21 00:12:34",
+            "customer": {
+                "email": "daniel.koh@gmail.com",
+                "name": "Daniel Koh",
+                "address": "200 Paya Lebar Road #08-45",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 22,
+                    "name": "ASUS TUF Gaming X570-Plus",
+                    "price": 199.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 36,
+                    "name": "AMD Ryzen 7 7700X",
+                    "price": 349.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 10,
+                    "name": "Western Digital Black SN850X 2TB",
+                    "price": 199.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 23,
+                    "name": "Seasonic Focus GX-750",
+                    "price": 129.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "SUMMER10",
+                "discount_percent": 10
+            },
+            "total_amount": 791.964
         }
     ]
 }

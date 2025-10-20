@@ -1,8 +1,8 @@
 {
-    "total": 25,
+    "total": 40,
     "products": [
         { "id": 1, "name": "Intel Core i7-13700K", "price": 419.99, "quantity": 15, "description": "13th Gen Intel Core processor with 16 cores and 24 threads", "category": "CPU", "image": "Images/intel core i7.jpg"  },
-        { "id": 2, "name": "NVIDIA GeForce RTX 4070", "price": 599.99, "quantity": 0, "description": "High-performance graphics card with 12GB GDDR6X memory", "category": "GPU", "image": "Images/RTX 4070.jpg"  },
+        { "id": 2, "name": "NVIDIA GeForce RTX 4070", "price": 599.99, "quantity": 8, "description": "High-performance graphics card with 12GB GDDR6X memory", "category": "GPU", "image": "Images/RTX 4070.jpg"  },
         { "id": 3, "name": "Corsair Vengeance LPX 32GB DDR4", "price": 89.99, "quantity": 25, "description": "32GB DDR4-3200 memory kit with low profile design", "category": "RAM", "image": "Images/corsair vengeance 32gb.jpg"  },
         { "id": 4, "name": "Samsung 980 PRO 1TB NVMe SSD", "price": 129.99, "quantity": 12, "description": "PCIe 4.0 NVMe SSD with 7000 MB/s read speeds", "category": "Storage", "image": "Images/Samsung 980 Pro.jpg"  },
         { "id": 5, "name": "ASUS ROG Strix B650-A", "price": 229.99, "quantity": 6, "description": "ATX motherboard for AMD Ryzen 7000 series processors", "category": "Motherboard", "image": "Images/asus rog strix b650 a.jpg"  },
@@ -25,6 +25,21 @@
         { "id": 22, "name": "ASUS TUF Gaming X570-Plus", "price": 199.99, "quantity": 10, "description": "ATX motherboard with military-grade components", "category": "Motherboard", "image": "Images/ASUS TUF Gaming X570-Plus.jpg"  },
         { "id": 23, "name": "Seasonic Focus GX-750", "price": 129.99, "quantity": 17, "description": "750W 80+ Gold fully modular power supply", "category": "PSU", "image": "Images/Seasonic Focus GX-750.jpg"  },
         { "id": 24, "name": "Kingston Fury Beast 16GB DDR4", "price": 54.99, "quantity": 30, "description": "16GB DDR4-3200 gaming memory with aggressive styling", "category": "RAM", "image": "Images/Kingston Fury Beast 16GB DDR4.jpg"  },
-        { "id": 25, "name": "AMD Radeon RX 7800 XT", "price": 499.99, "quantity": 5, "description": "High-performance graphics card with 16GB GDDR6 memory", "category": "GPU", "image": "Images/AMD Radeon RX 7800 XT.jpg"  }
+        { "id": 25, "name": "AMD Radeon RX 7800 XT", "price": 499.99, "quantity": 5, "description": "High-performance graphics card with 16GB GDDR6 memory", "category": "GPU", "image": "Images/AMD Radeon RX 7800 XT.jpg"  },
+        { "id": 26, "name": "Corsair Vengeance LPX 16GB DDR4", "price": 49.99, "quantity": 35, "description": "16GB DDR4-3200 memory kit for mainstream builds", "category": "RAM", "image": "Images/corsair vengeance 32gb.jpg"  },
+        { "id": 27, "name": "Samsung 980 PRO 2TB NVMe SSD", "price": 219.99, "quantity": 10, "description": "PCIe 4.0 NVMe SSD with 2TB capacity and blazing speeds", "category": "Storage", "image": "Images/Samsung 980 Pro.jpg"  },
+        { "id": 28, "name": "NVIDIA GeForce RTX 4070 Ti", "price": 799.99, "quantity": 6, "description": "Advanced graphics card with 12GB GDDR6X memory", "category": "GPU", "image": "Images/RTX 4070.jpg"  },
+        { "id": 29, "name": "Intel Core i9-13900K", "price": 589.99, "quantity": 8, "description": "Flagship 13th Gen Intel processor with 24 cores", "category": "CPU", "image": "Images/intel core i7.jpg"  },
+        { "id": 30, "name": "ASUS ROG Strix B650-E", "price": 289.99, "quantity": 7, "description": "Premium ATX motherboard for AMD Ryzen 7000 series", "category": "Motherboard", "image": "Images/asus rog strix b650 a.jpg"  },
+        { "id": 31, "name": "Corsair RM1000x 1000W PSU", "price": 199.99, "quantity": 9, "description": "1000W 80+ Gold modular power supply for high-end builds", "category": "PSU", "image": "Images/Corsair RM850x 850W PSU.jpg"  },
+        { "id": 32, "name": "Arctic Liquid Freezer II 360", "price": 139.99, "quantity": 11, "description": "360mm AIO liquid cooler with exceptional cooling", "category": "Cooling", "image": "Images/Arctic Liquid Freezer II 280.jpg"  },
+        { "id": 33, "name": "Lian Li PC-O11 Dynamic EVO", "price": 179.99, "quantity": 6, "description": "Enhanced mid-tower case with superior airflow", "category": "Case", "image": "Images/Lian Li PC-O11 Dynamic.jpg"  },
+        { "id": 34, "name": "G.Skill Trident Z5 RGB 32GB DDR5", "price": 169.99, "quantity": 14, "description": "32GB DDR5-6000 memory kit with stunning RGB", "category": "RAM", "image": "Images/G.Skill Trident Z5 RGB 64GB DDR5.jpg"  },
+        { "id": 35, "name": "Western Digital Black SN850X 1TB", "price": 119.99, "quantity": 22, "description": "High-speed 1TB PCIe Gen4 NVMe SSD for gaming", "category": "Storage", "image": "Images/Western Digital Black SN850X 2TB.jpg"  },
+        { "id": 36, "name": "AMD Ryzen 7 7700X", "price": 349.99, "quantity": 13, "description": "8-core, 16-thread processor with 5.4 GHz boost", "category": "CPU", "image": "Images/AMD Ryzen 9 7900X.jpg"  },
+        { "id": 37, "name": "MSI GeForce RTX 4080 Gaming X Trio", "price": 1199.99, "quantity": 4, "description": "High-end graphics card with 16GB GDDR6X memory", "category": "GPU", "image": "Images/MSI GeForce RTX 4090 Gaming X Trio.jpg"  },
+        { "id": 38, "name": "Seagate Barracuda 2TB HDD", "price": 54.99, "quantity": 28, "description": "2TB 7200 RPM SATA hard drive for storage", "category": "Storage", "image": "Images/Seagate Barracuda 4TB HDD.jpg"  },
+        { "id": 39, "name": "MSI MAG B760 Tomahawk WiFi", "price": 219.99, "quantity": 12, "description": "ATX motherboard with WiFi for Intel 13th Gen", "category": "Motherboard", "image": "Images/MSI MAG B550 Tomahawk.jpg"  },
+        { "id": 40, "name": "Corsair iCUE 5000X RGB", "price": 179.99, "quantity": 8, "description": "Full-tower case with tempered glass and RGB", "category": "Case", "image": "Images/Corsair iCUE 4000X RGB.jpg"  }
     ]
 }
