@@ -73,6 +73,7 @@ class AdminPage(Page):
                         st.error("Failed to update inventory.")
 
     def transaction_management(self):
+        
         st.header("Transaction Management")
         if not self.transactions or "transactions" not in self.transactions:
             st.info("No transaction data available.")
@@ -84,12 +85,21 @@ class AdminPage(Page):
             st.info("No transactions recorded yet.")
             return
 
+        st.subheader("Summary Statistics")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Total Transactions", len(transactions_list))
+        with col2:
+            total_revenue = sum(t.get("total_amount", 0) for t in transactions_list)
+            st.metric("Total Revenue", f"${total_revenue:.2f}")
+        with col3:
+            avg_order = total_revenue / len(transactions_list) if transactions_list else 0
+            st.metric("Average Order", f"${avg_order:.2f}")
         # Search and filter options
         col1, col2 = st.columns(2)
         with col1:
             search_term = st.text_input("Search by Transaction ID, Customer Email, or Name", "")
-        with col2:
-            search_country = st.text_input("Filter by Country", "")
+
 
         # Filter transactions based on search
         filtered_transactions = transactions_list
@@ -101,14 +111,6 @@ class AdminPage(Page):
                 or search_term_lower in t.get("customer", {}).get("email", "").lower()
                 or search_term_lower in t.get("customer", {}).get("name", "").lower()
             ]
-
-        if search_country:
-            search_country_lower = search_country.lower()
-            filtered_transactions = [
-                t for t in filtered_transactions
-                if search_country_lower in t.get("customer", {}).get("country", "").lower()
-            ]
-
         st.info(f"Showing {len(filtered_transactions)} of {len(transactions_list)} transactions")
 
         st.divider()
@@ -246,23 +248,7 @@ class AdminPage(Page):
                 st.success("Promotional codes updated successfully!")
 
     def main_dashboard(self):
-        user_info = auth.get_current_user()
-        if user_info:
-            st.info(f"Logged in as: {user_info.get('username', 'Unknown')}")
-        # Summary statistics
-        transactions_list = self.transactions.get("transactions", [])
-        st.subheader("Summary Statistics")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Total Transactions", len(transactions_list))
-        with col2:
-            total_revenue = sum(t.get("total_amount", 0) for t in transactions_list)
-            st.metric("Total Revenue", f"${total_revenue:.2f}")
-        with col3:
-            avg_order = total_revenue / len(transactions_list) if transactions_list else 0
-            st.metric("Average Order", f"${avg_order:.2f}")
         
-        st.divider()
         
         # AI Analytics Section
         self._render_ai_analytics()
@@ -324,7 +310,7 @@ class AdminPage(Page):
         )
         
         # Submit and clear buttons
-        col1, col2, col3 = st.columns([1, 1, 2])
+        col1, col2 = st.columns([1, 1, 2])
         with col1:
             analyze_button = st.button("🔍 Analyze", type="primary", use_container_width=True)
         with col2:
@@ -413,8 +399,11 @@ class AdminPage(Page):
                 st.title("Admin Panel")
             with col2:
                 self.logout_button()
-            
-            tab1, tab2, tab3, tab4 = st.tabs(["Dashboard", "Transactions", "Inventory", "Discount Codes"])
+            user_info = auth.get_current_user()
+            if user_info:
+                st.info(f"Logged in as: {user_info.get('username', 'Unknown')}")
+            # Summary statistics
+            tab1, tab2, tab3, tab4 = st.tabs(["♾️ Generative Analytics", "🧾 Transactions", "📦 Inventory", "🎁 Discount Codes"])
             with tab1:
                 self.main_dashboard()
             with tab2:

@@ -125,6 +125,47 @@
                 "discount_percent": 10
             },
             "total_amount": 890.964
+        },
+        {
+            "transaction_id": "TXN20251021051234",
+            "date": "2025-10-21 05:12:34",
+            "customer": {
+                "email": "john.doe@me.com",
+                "name": "John Doe",
+                "address": "123 Main St, Springfield",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 7,
+                    "name": "Noctua NH-D15",
+                    "price": 99.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 9,
+                    "name": "AMD Ryzen 9 7900X",
+                    "price": 549.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 11,
+                    "name": "G.Skill Trident Z5 RGB 64GB DDR5",
+                    "price": 299.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 15,
+                    "name": "Lian Li PC-O11 Dynamic",
+                    "price": 149.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "STUDENT5",
+                "discount_percent": 5
+            },
+            "total_amount": 1044.962
         }
     ]
 }
