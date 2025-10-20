@@ -1,0 +1,84 @@
+{
+  "components": {
+    "metric": {
+      "description": "Display a single KPI value with optional delta comparison",
+      "required": ["label", "value"],
+      "optional": ["delta", "delta_color"],
+      "example": {
+        "type": "metric",
+        "config": {
+          "label": "Total Revenue",
+          "value": 12500.50,
+          "delta": "+12.5%",
+          "delta_color": "normal"
+        }
+      }
+    },
+    "markdown": {
+      "description": "Display formatted text, insights, or summaries",
+      "required": ["content"],
+      "optional": [],
+      "example": {
+        "type": "markdown",
+        "config": {
+          "content": "### Key Insights\n- Product A is the best seller\n- Sales increased by 15% this month"
+        }
+      }
+    },
+    "dataframe": {
+      "description": "Display tabular data with sorting and filtering",
+      "required": ["data"],
+      "optional": ["title", "hide_index"],
+      "data_format": "List of dictionaries or dictionary of lists",
+      "example": {
+        "type": "dataframe",
+        "config": {
+          "title": "Top Products",
+          "data": [
+            {"Product": "CPU", "Sales": 1200, "Revenue": 25000},
+            {"Product": "GPU", "Sales": 980, "Revenue": 22000}
+          ],
+          "hide_index": true
+        }
+      }
+    },
+    "bar_chart": {
+      "description": "Display bar chart for comparing categories",
+      "required": ["data"],
+      "optional": ["title", "x", "y", "color"],
+      "data_format": "List of dictionaries with consistent keys",
+      "example": {
+        "type": "bar_chart",
+        "config": {
+          "title": "Sales by Category",
+          "data": [
+            {"category": "CPU", "value": 1200},
+            {"category": "GPU", "value": 980},
+            {"category": "RAM", "value": 650}
+          ],
+          "x": "category",
+          "y": "value"
+        }
+      }
+    },
+    "line_chart": {
+      "description": "Display line chart for showing trends over time",
+      "required": ["data"],
+      "optional": ["title", "x", "y"],
+      "data_format": "List of dictionaries with consistent keys",
+      "example": {
+        "type": "line_chart",
+        "config": {
+          "title": "Revenue Trend",
+          "data": [
+            {"date": "2025-01", "revenue": 5000},
+            {"date": "2025-02", "revenue": 6200},
+            {"date": "2025-03", "revenue": 7500}
+          ],
+          "x": "date",
+          "y": "revenue"
+        }
+      }
+    }
+  }
+}

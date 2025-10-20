@@ -14,3 +14,6 @@ venv/
 
 # Authentication
 password
+
+# Environment variables
+.env

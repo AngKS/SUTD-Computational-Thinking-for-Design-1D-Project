@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import traceback
 from models.Page import Page
 from models.App import MultiPageApp
 from utils import read_data, write_data
@@ -12,6 +13,17 @@ class AdminPage(Page):
         self.transactions = read_data('transactions.json')
         self.inventory = read_data('inventory.json')
         self.promocodes = read_data('promocodes.json')
+        
+        # Initialize AI services
+        try:
+            from services.ai_query_service import AIQueryService
+            from services.ui_renderer import UIRenderer
+            self.ai_service = AIQueryService()
+            self.ui_renderer = UIRenderer()
+            self.ai_enabled = True
+        except Exception as e:
+            self.ai_enabled = False
+            self.ai_error = str(e)
 
     @property
     def logged_in(self):
@@ -176,7 +188,7 @@ class AdminPage(Page):
                         if st.button("✓ Confirm Delete", key=f"confirm_{transaction_id}", type="primary"):
                             # Delete the transaction
                             self.transactions["transactions"] = [
-                                t for t in self.transactions["transactions"] 
+                                t for t in self.transactions["transactions"]
                                 if t.get('transaction_id') != transaction_id
                             ]
                             if write_data('transactions.json', self.transactions):
@@ -185,9 +197,9 @@ class AdminPage(Page):
                                 st.rerun()
                             else:
                                 st.error("Failed to delete transaction. Please try again.")
-        
+
         st.divider()
-        
+
         # Export option
         if st.button("📥 Export All Transactions to CSV"):
             # Flatten transactions for export
@@ -209,7 +221,7 @@ class AdminPage(Page):
                         'Promo Code': t.get('promo_code', ''),
                         'Total Amount': t.get('total_amount', 0)
                     })
-            
+
             if export_data:
                 df_export = pd.DataFrame(export_data)
                 csv = df_export.to_csv(index=False)
@@ -251,6 +263,144 @@ class AdminPage(Page):
             st.metric("Average Order", f"${avg_order:.2f}")
         
         st.divider()
+        
+        # AI Analytics Section
+        self._render_ai_analytics()
+    
+    def _render_ai_analytics(self):
+        """Render the generative UI analytics section"""
+        st.subheader("🤖 AI Analytics Assistant")
+        st.caption("Ask questions about your store data in natural language")
+        
+        # Check if AI is enabled
+        if not self.ai_enabled:
+            st.warning(f"⚠️ AI Analytics is currently unavailable: {self.ai_error}")
+            with st.expander("ℹ️ How to enable AI Analytics"):
+                st.markdown("""
+                1. Create a `.env` file in the project root
+                2. Add your OpenAI API key: `OPENAI_API_KEY=your_key_here`
+                3. Get an API key from [platform.openai.com](https://platform.openai.com)
+                4. Restart the application
+                """)
+            return
+        
+        # Data source selector and examples toggle
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            data_sources = st.multiselect(
+                "Data sources to query:",
+                ["Transactions", "Inventory", "Promo Codes"],
+                default=["Transactions"],
+                key="ai_data_sources"
+            )
+        with col2:
+            st.write("")  # Spacing
+            show_examples = st.toggle("Show examples", value=False, key="show_examples")
+        
+        # Example queries (collapsible)
+        if show_examples:
+            with st.expander("📝 Example Questions", expanded=True):
+                example_queries = [
+                    "What are the top 5 best-selling products?",
+                    "Show me total revenue by product category",
+                    "Which customers spent the most?",
+                    "Which products are low in stock?",
+                    "How many times was each promo code used?",
+                    "What is the average order value?"
+                ]
+                cols = st.columns(2)
+                for i, example in enumerate(example_queries):
+                    with cols[i % 2]:
+                        if st.button(f"💡 {example}", key=f"example_{i}", use_container_width=True):
+                            st.session_state.ai_query_input = example
+                            st.rerun()
+        
+        # Query input
+        user_query = st.text_area(
+            "Your question:",
+            placeholder="e.g., What are the top 5 best-selling products?",
+            height=100,
+            key="ai_query_input"
+        )
+        
+        # Submit and clear buttons
+        col1, col2, col3 = st.columns([1, 1, 2])
+        with col1:
+            analyze_button = st.button("🔍 Analyze", type="primary", use_container_width=True)
+        with col2:
+            if st.button("🗑️ Clear", use_container_width=True):
+                st.session_state.ai_query_input = ""
+                if 'ai_response' in st.session_state:
+                    del st.session_state['ai_response']
+                if 'ai_cache' in st.session_state:
+                    st.session_state.ai_cache = {}
+                st.rerun()
+        
+        # Process query
+        if analyze_button and user_query.strip():
+            self._process_ai_query(user_query, data_sources)
+        
+        # Display previous results if available
+        if 'ai_response' in st.session_state:
+            st.divider()
+            st.subheader("📊 Analysis Results")
+            self.ui_renderer.render(st.session_state.ai_response)
+    
+    def _process_ai_query(self, query, data_sources):
+        """Process AI query and store results in session state"""
+        if not data_sources:
+            st.warning("⚠️ Please select at least one data source to query.")
+            return
+        
+        # Check for cached response
+        cache_key = f"{query}_{'-'.join(sorted(data_sources))}"
+        if 'ai_cache' not in st.session_state:
+            st.session_state.ai_cache = {}
+        
+        # Use cached response if available
+        if cache_key in st.session_state.ai_cache:
+            st.session_state.ai_response = st.session_state.ai_cache[cache_key]
+            st.info("📦 Loaded from cache")
+            return  # Don't rerun, just display the cached result
+        
+        with st.spinner("🤔 Analyzing your data..."):
+            try:
+                # Prepare data context from already-loaded data
+                data_context = self._prepare_data_for_ai(data_sources)
+                
+                # Query AI service
+                response = self.ai_service.query(query, data_context)
+                
+                # Store in session state and cache
+                st.session_state.ai_response = response
+                st.session_state.ai_cache[cache_key] = response
+                
+                # Limit cache size to 10 entries
+                if len(st.session_state.ai_cache) > 10:
+                    # Remove oldest entry
+                    oldest_key = next(iter(st.session_state.ai_cache))
+                    del st.session_state.ai_cache[oldest_key]
+                
+                st.success("✓ Analysis complete!")
+                st.rerun()
+                
+            except Exception as e:
+                st.error(f"❌ Error: {str(e)}")
+                with st.expander("Error Details"):
+                    st.code(traceback.format_exc())
+    
+    def _prepare_data_for_ai(self, sources):
+        """Prepare data context from selected sources"""
+        data_context = {}
+        
+        if "Transactions" in sources:
+            data_context["transactions"] = self.transactions
+        if "Inventory" in sources:
+            data_context["inventory"] = self.inventory
+        if "Promo Codes" in sources:
+            data_context["promocodes"] = self.promocodes
+        
+        return data_context
 
     def display(self):
         if not self.logged_in:
