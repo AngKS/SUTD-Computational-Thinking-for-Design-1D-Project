@@ -1,5 +1,6 @@
 import streamlit as st
 
+# Handle Page Navigation
 class MultiPageApp:
     """Main application class to manage pages and navigation."""
     def __init__(self, title: str, icon: str = "🌐"):
@@ -14,11 +15,11 @@ class MultiPageApp:
 
     def display(self):
         """Display the application with navigation."""
-        st.set_page_config(
-            page_title=self.title,
-            page_icon=self.icon,
-            layout=self.layout
-        )
+        # st.set_page_config(
+        #     page_title=self.title,
+        #     page_icon=self.icon,
+        #     layout=self.layout
+        # )
 
         # Navigation sidebar
         page_titles = [f"{page.icon} {page.title}" for page in self.pages]

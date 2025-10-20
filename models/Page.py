@@ -1,5 +1,7 @@
 import streamlit as st
 
+# Parent or base class, basic structure and properties other pages inherit from.
+
 class Page:
     def __init__(self, title: str, icon: str = "📄"):
         self.title = title
@@ -15,7 +17,7 @@ class Page:
     
     def __repr__(self):
         return self.__str__()
-    
+
 
 if __name__ == "__main__":
     page = Page("Home", "🏠")

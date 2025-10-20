@@ -2,6 +2,7 @@ import json
 from models import App
 from views.Pages import CashierPage, MainPage
 
+# Application Launcher
 
 def load_inventory(file_path='inventory.json'):
     try:
