@@ -90,7 +90,8 @@ class ProductItem():
             # Add functional Streamlit button with custom styling (only for in-stock items)
             if self.is_in_stock:
                 if st.button(
-                        "🛒 Add to Cart",
+                        "Add to Cart",
+                        icon=":material/add:",
                         key=f"add_to_cart_{self.id}",
                         on_click=self.addToCart,
                         use_container_width=True,

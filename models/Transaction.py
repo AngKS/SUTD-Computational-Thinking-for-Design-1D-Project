@@ -1,10 +1,11 @@
 from models.Product import ProductItem
-
+from utils import read_data, write_data
 class Transaction:
     def __init__(self, transaction_id, date=None):
         self.transaction_id = transaction_id
         self.date = date
         self.cart_items = {}  # Dictionary: {product_id: {'product': ProductItem, 'quantity': int}}
+        self.promo_code = None
 
     def addItem(self, product, quantity=1):
         """Add a product to the cart or increase its quantity with stock validation"""
@@ -55,22 +56,66 @@ class Transaction:
         if product_id in self.cart_items:
             return self.cart_items[product_id]['quantity']
         return 0
+    
+    def calculatePromoDiscount(self, subtotal: float) -> float:
+        """Calculate the discount amount based on the applied promo code"""
+        if self.promo_code:
+            discount_percent = self.promo_code['discount_percent']
+            discount_amount = subtotal * (discount_percent / 100)
+            return discount_amount
+        return 0
 
-    def getSubtotal(self, product_id):
+    def applyPromoCode(self, code: str):
+        """Apply a promo code to the transaction"""
+        try:
+            promo_data = read_data('promocodes.json')
+            # The JSON structure has a "codes" array with promo code objects
+            if 'codes' in promo_data:
+                for promo in promo_data['codes']:
+                    if promo['code'] == code:
+                        self.promo_code = {
+                            'code': code,
+                            'discount_percent': promo['discount_percent']
+                        }
+                        return True
+            return False
+        except Exception as e:
+            print(f"Error applying promo code: {e}")
+            return False
+
+
+
+    def getProductSubtotal(self, product_id):
         """Get the subtotal for a specific product"""
         if product_id in self.cart_items:
             item = self.cart_items[product_id]
             return item['product'].price * item['quantity']
         return 0
 
-    def getTotal(self):
-        """Calculate the total price of all items in cart"""
-        total = 0
+    def getSubTotal(self):
+        """Calculate the subtotal price of all items in cart before applying promo code"""
+        subtotal = 0
         for item_data in self.cart_items.values():
             product = item_data['product']
             quantity = item_data['quantity']
-            total += product.price * quantity
-        return total
+            subtotal += product.price * quantity
+        return subtotal
+
+    def getTotal(self):
+        """Calculate the total price of all items in cart after applying promo code discount"""
+        subtotal = 0
+        for item_data in self.cart_items.values():
+            product = item_data['product']
+            quantity = item_data['quantity']
+            subtotal += product.price * quantity
+        
+        # Apply promo code discount if available
+        if self.promo_code:
+            discount_percent = self.promo_code['discount_percent']
+            discount_amount = subtotal * (discount_percent / 100)
+            return subtotal - discount_amount
+        
+        return subtotal
 
     def getItemCount(self):
         """Get total number of items in cart"""

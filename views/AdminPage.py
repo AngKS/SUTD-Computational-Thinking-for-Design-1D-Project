@@ -10,6 +10,7 @@ class AdminPage(Page):
         self.app = _app
         self.transactions = read_data('transactions.json')
         self.inventory = read_data('inventory.json')
+        self.promocodes = read_data('promocodes.json')
 
     @property
     def logged_in(self):
@@ -69,6 +70,17 @@ class AdminPage(Page):
             write_data('transactions.json', self.transactions)
             st.success("Transactions updated successfully!")
 
+    def promocode_management(self):
+        st.header("Promotional Code Management")
+        if not self.promocodes:
+            st.info("No promotional code data available.")
+            return
+        df = st.data_editor(self.promocodes["codes"])
+        if df != self.promocodes["codes"]:
+            if st.button("Save Promo Code Changes"):
+                self.promocodes["codes"] = df
+                write_data('promocodes.json', self.promocodes)
+                st.success("Promotional codes updated successfully!")
 
     def display(self):
         if not self.logged_in:
@@ -82,7 +94,7 @@ class AdminPage(Page):
             with col2:
                 self.logout_button()
             
-            tab1, tab2, tab3 = st.tabs(["Dashboard", "Transactions", "Inventory"])
+            tab1, tab2, tab3, tab4 = st.tabs(["Dashboard", "Transactions", "Inventory", "Discount Codes"])
             with tab1:
                 st.write("Welcome to the Admin Dashboard!")
                 st.write("Use the tabs to navigate through different admin features.")
@@ -93,3 +105,5 @@ class AdminPage(Page):
                 self.transaction_management()
             with tab3:
                 self.inventory_management()
+            with tab4:
+                self.promocode_management()

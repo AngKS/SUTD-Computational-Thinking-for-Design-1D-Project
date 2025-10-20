@@ -1,0 +1,19 @@
+{
+    "codes": [
+        {
+            "code": "SUMMER10",
+            "discount_percent": 10,
+            "description": "10% off for summer sale"
+        },
+        {
+            "code": "FREESHIP",
+            "discount_percent": 0,
+            "description": "Free shipping on orders over $50"
+        },
+        {
+            "code": "WELCOME15",
+            "discount_percent": 15,
+            "description": "15% off for new customers"
+        }
+    ]
+}
