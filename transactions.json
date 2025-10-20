@@ -1,1 +1,30 @@
-{}
+{
+    "transactions": [
+        {
+            "transaction_id": "4b47e496-2a05-4ba6-b583-67384749f322",
+            "date": "2025-10-21 03:45:57",
+            "customer": {
+                "email": "john.doe@me.com",
+                "name": "John Doe",
+                "address": "123 Main St, Springfield",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 1,
+                    "name": "Intel Core i7-13700K",
+                    "price": 419.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 3,
+                    "name": "Corsair Vengeance LPX 32GB DDR4",
+                    "price": 89.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": null,
+            "total_amount": 509.98
+        }
+    ]
+}

@@ -8,11 +8,11 @@ import streamlit as st
 # Application Launcher
 
 def main():
-    app = App.MultiPageApp(title="My Streamlit App", icon="🚀")
+    app = App.MultiPageApp(title="KSMD Store", icon="./assets/KSMD Logo.png")
     
     # Initialize transaction only if it doesn't exist
     if 'transaction' not in st.session_state:
-        st.session_state.transaction = Transaction.Transaction(transaction_id=str(uuid.uuid4()), date= dt.now())
+        st.session_state.transaction = Transaction.Transaction(transaction_id = str(uuid.uuid4()), date = dt.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     admin_page = AdminPage(app)
     main_page = MainPage(app)

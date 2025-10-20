@@ -4,6 +4,7 @@ from models.App import MultiPageApp
 from models.Product import ProductItem
 from models.Transaction import Transaction
 from utils import read_data
+from datetime import datetime as dt
 
 class MainPage(Page):
     def __init__(self, _app: MultiPageApp):
@@ -21,7 +22,7 @@ class MainPage(Page):
     def display(self):
         # st.image("Images/KSMD Logo.png")
         # st.write("Use the sidebar to navigate to different sections.")
-
+        st.write(dt.now().strftime("%Y-%m-%d %H:%M:%S"))
         # Show product grid
         cols = st.columns(3)
 

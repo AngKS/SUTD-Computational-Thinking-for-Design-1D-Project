@@ -1,5 +1,6 @@
 from models.Product import ProductItem
 from utils import read_data, write_data
+import streamlit as st
 class Transaction:
     def __init__(self, transaction_id, date=None):
         self.transaction_id = transaction_id
@@ -124,6 +125,51 @@ class Transaction:
     def isEmpty(self):
         """Check if cart is empty"""
         return len(self.cart_items) == 0
+
+    def save_transaction(self, file_path='transactions.json'):
+        """Save the transaction details to a JSON file"""
+        try:
+            data = read_data(file_path)
+            if 'transactions' not in data:
+                data['transactions'] = []
+
+            customer_data = {
+                "email": st.session_state.get('billing_email', ''),
+                "name": st.session_state.get('billing_name', ''),
+                "address": st.session_state.get('billing_address', ''),
+                "country": st.session_state.get('billing_country', '')
+            }
+            
+            # Prepare transaction data for saving
+            transaction_record = {
+                'transaction_id': self.transaction_id,
+                'date': self.date if self.date else '',
+                'customer': customer_data,
+                'items': [
+                    {
+                        'product_id': item_data['product'].id,
+                        'name': item_data['product'].name,
+                        'price': item_data['product'].price,
+                        'quantity': item_data['quantity']
+                    }
+                    for item_data in self.cart_items.values()
+                ],
+                'promo_code': self.promo_code,
+                'total_amount': self.getTotal()
+            }
+            data['transactions'].append(transaction_record)
+            
+            # Write the data and check if it succeeded
+            if write_data(file_path, data):
+                return True
+            else:
+                print(f"Failed to write transaction data to {file_path}")
+                return False
+        except Exception as e:
+            print(f"Error saving transaction: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
 
     def clearCart(self):
         """Empty the entire cart"""

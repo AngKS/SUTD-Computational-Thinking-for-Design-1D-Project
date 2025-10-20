@@ -10,10 +10,13 @@ def read_data(file_path: str) -> dict:
         return {}
 
 def write_data(file_path, data: dict) -> bool:
-    with open(file_path, 'w') as file:
-        json.dump(data, file, indent=4)
+    try:
+        with open(file_path, 'w') as file:
+            json.dump(data, file, indent=4)
         return True
-    return False
+    except Exception as e:
+        print(f"Error writing data to {file_path}: {e}")
+        return False
 
 # Input validation utilities for billing form
 def validate_email(email: str) -> bool:

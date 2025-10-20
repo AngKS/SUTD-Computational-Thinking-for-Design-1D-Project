@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 from models.Page import Page
 from models.App import MultiPageApp
 from models.Transaction import Transaction
@@ -180,6 +181,18 @@ class CheckoutPage(Page):
                     elif billing['errors']:
                         st.error("Please correct the errors above before checking out.")
                     else:
-                        st.success("Order placed successfully!")
-                        transaction.clearCart()
+                        # Save billing information to session state before saving transaction
+                        st.session_state['billing_email'] = billing['email']
+                        st.session_state['billing_name'] = billing['name']
+                        st.session_state['billing_address'] = billing['address']
+                        st.session_state['billing_country'] = billing['country']
+                        
+                        if transaction.save_transaction():
+                            st.balloons()
+                            st.success("Order placed successfully!")
+                            time.sleep(0.8)
+                            transaction.clearCart()
+                        else:
+                            st.error("Failed to place order. Please try again.")
                         st.rerun()
+                        
