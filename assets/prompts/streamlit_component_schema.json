@@ -1,0 +1,189 @@
+{
+  "components": {
+    "metric": {
+      "description": "Display a single KPI value with optional delta comparison using st.metric()",
+      "required": ["label", "value"],
+      "optional": ["delta", "delta_color", "help"],
+      "parameters": {
+        "label": "The header or title for the metric",
+        "value": "Value of the metric (int, float, or string)",
+        "delta": "Indicator of change (shows with up/down arrow)",
+        "delta_color": "Color scheme: 'normal' (default), 'inverse', or 'off'",
+        "help": "Tooltip displayed next to the metric label"
+      },
+      "example": {
+        "type": "metric",
+        "config": {
+          "label": "Total Revenue",
+          "value": "$12,500.50",
+          "delta": "+12.5%",
+          "delta_color": "normal",
+          "help": "Total revenue for the selected period"
+        }
+      }
+    },
+    "markdown": {
+      "description": "Display formatted text, insights, or summaries using st.markdown()",
+      "required": ["content"],
+      "optional": [],
+      "parameters": {
+        "content": "Markdown-formatted text content"
+      },
+      "example": {
+        "type": "markdown",
+        "config": {
+          "content": "### Key Insights\n- Product A is the best seller\n- Sales increased by 15% this month"
+        }
+      }
+    },
+    "dataframe": {
+      "description": "Display tabular data with sorting and filtering using st.dataframe()",
+      "required": ["data"],
+      "optional": ["title", "hide_index", "use_container_width"],
+      "parameters": {
+        "title": "Optional title displayed above the dataframe",
+        "data": "List of dictionaries or dictionary of lists",
+        "hide_index": "Whether to hide the index column (default: true)",
+        "use_container_width": "Whether to use full container width (default: true)"
+      },
+      "data_format": "List of dictionaries (each dict is a row) or dictionary of lists (each key is a column)",
+      "example": {
+        "type": "dataframe",
+        "config": {
+          "title": "Top Products",
+          "data": [
+            {"Product": "CPU", "Sales": 1200, "Revenue": "$25,000"},
+            {"Product": "GPU", "Sales": 980, "Revenue": "$22,000"}
+          ],
+          "hide_index": true,
+          "use_container_width": true
+        }
+      }
+    },
+    "bar_chart": {
+      "description": "Display bar chart using st.bar_chart() for comparing categories or values",
+      "required": ["data"],
+      "optional": ["title", "x", "y", "color", "x_label", "y_label", "horizontal", "stack"],
+      "parameters": {
+        "title": "Optional title displayed above the chart",
+        "data": "List of dictionaries with consistent keys for chart data",
+        "x": "Column name for x-axis (optional, uses index if not specified)",
+        "y": "Column name(s) for y-axis (string or list of strings)",
+        "color": "Column name for categorical coloring, or color string/hex code",
+        "x_label": "Label for x-axis",
+        "y_label": "Label for y-axis",
+        "horizontal": "Display horizontal bars instead of vertical (default: false)",
+        "stack": "Whether to stack bars (default: true for multiple series)"
+      },
+      "data_format": "List of dictionaries where each dictionary represents a data point",
+      "example": {
+        "type": "bar_chart",
+        "config": {
+          "title": "Sales by Category",
+          "data": [
+            {"category": "CPU", "sales": 1200},
+            {"category": "GPU", "sales": 980},
+            {"category": "RAM", "sales": 650}
+          ],
+          "x": "category",
+          "y": "sales",
+          "x_label": "Product Category",
+          "y_label": "Units Sold"
+        }
+      }
+    },
+    "line_chart": {
+      "description": "Display line chart using st.line_chart() for showing trends over time",
+      "required": ["data"],
+      "optional": ["title", "x", "y", "color", "x_label", "y_label"],
+      "parameters": {
+        "title": "Optional title displayed above the chart",
+        "data": "List of dictionaries with consistent keys for chart data",
+        "x": "Column name for x-axis (optional, uses index if not specified)",
+        "y": "Column name(s) for y-axis (string or list of strings)",
+        "color": "Column name for categorical coloring, or color string/hex code",
+        "x_label": "Label for x-axis",
+        "y_label": "Label for y-axis"
+      },
+      "data_format": "List of dictionaries where each dictionary represents a data point",
+      "example": {
+        "type": "line_chart",
+        "config": {
+          "title": "Revenue Trend",
+          "data": [
+            {"date": "2025-01", "revenue": 5000},
+            {"date": "2025-02", "revenue": 6200},
+            {"date": "2025-03", "revenue": 7500}
+          ],
+          "x": "date",
+          "y": "revenue",
+          "x_label": "Month",
+          "y_label": "Revenue ($)"
+        }
+      }
+    },
+    "area_chart": {
+      "description": "Display area chart using st.area_chart() for showing cumulative trends or stacked data",
+      "required": ["data"],
+      "optional": ["title", "x", "y", "color", "x_label", "y_label", "stack"],
+      "parameters": {
+        "title": "Optional title displayed above the chart",
+        "data": "List of dictionaries with consistent keys for chart data",
+        "x": "Column name for x-axis (optional, uses index if not specified)",
+        "y": "Column name(s) for y-axis (string or list of strings)",
+        "color": "Column name for categorical coloring, or color string/hex code",
+        "x_label": "Label for x-axis",
+        "y_label": "Label for y-axis",
+        "stack": "How to stack areas: true, false, 'normalize', or 'center'"
+      },
+      "data_format": "List of dictionaries where each dictionary represents a data point",
+      "example": {
+        "type": "area_chart",
+        "config": {
+          "title": "Cumulative Sales",
+          "data": [
+            {"month": "Jan", "online": 1200, "retail": 800},
+            {"month": "Feb", "online": 1400, "retail": 900},
+            {"month": "Mar", "online": 1600, "retail": 1000}
+          ],
+          "x": "month",
+          "y": ["online", "retail"],
+          "x_label": "Month",
+          "y_label": "Sales"
+        }
+      }
+    },
+    "scatter_chart": {
+      "description": "Display scatter chart using st.scatter_chart() for showing relationships between variables",
+      "required": ["data"],
+      "optional": ["title", "x", "y", "color", "size", "x_label", "y_label"],
+      "parameters": {
+        "title": "Optional title displayed above the chart",
+        "data": "List of dictionaries with consistent keys for chart data",
+        "x": "Column name for x-axis",
+        "y": "Column name for y-axis",
+        "color": "Column name for categorical coloring, or color string/hex code",
+        "size": "Column name for variable sizing, or constant size value",
+        "x_label": "Label for x-axis",
+        "y_label": "Label for y-axis"
+      },
+      "data_format": "List of dictionaries where each dictionary represents a data point",
+      "example": {
+        "type": "scatter_chart",
+        "config": {
+          "title": "Price vs Sales Correlation",
+          "data": [
+            {"price": 299, "sales": 150, "category": "Budget"},
+            {"price": 599, "sales": 100, "category": "Mid-range"},
+            {"price": 1299, "sales": 50, "category": "Premium"}
+          ],
+          "x": "price",
+          "y": "sales",
+          "color": "category",
+          "x_label": "Price ($)",
+          "y_label": "Units Sold"
+        }
+      }
+    }
+  }
+}
