@@ -84,6 +84,41 @@
                 "discount_percent": 15
             },
             "total_amount": 909.4575
+        },
+        {
+            "transaction_id": "TXN20251021162449",
+            "date": "2025-10-21 16:24:49",
+            "customer": {
+                "email": "john.doe@me.com",
+                "name": "John Doe",
+                "address": "123 Main St, Springfield",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 1,
+                    "name": "Intel Core i7-13700K",
+                    "price": 419.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 3,
+                    "name": "Corsair Vengeance LPX 32GB DDR4",
+                    "price": 89.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 5,
+                    "name": "ASUS ROG Strix B650-A",
+                    "price": 229.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": {
+                "code": "SUMMER10",
+                "discount_percent": 10
+            },
+            "total_amount": 665.9730000000001
         }
     ]
 }

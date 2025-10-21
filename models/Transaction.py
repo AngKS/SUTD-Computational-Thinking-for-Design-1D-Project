@@ -43,7 +43,7 @@ class Transaction:
             }
         return True, quantity
 
-    def removeItem(self, product_id, quantity=1):
+    def removeItem(self, product_id, quantity=1) -> bool:
         """Remove a product from cart or decrease its quantity"""
         if product_id in self.cart_items:
             self.cart_items[product_id]['quantity'] -= quantity
@@ -54,14 +54,14 @@ class Transaction:
             return True
         return False
 
-    def removeItemCompletely(self, product_id):
+    def removeItemCompletely(self, product_id) -> bool:
         """Remove an item completely from the cart"""
         if product_id in self.cart_items:
             del self.cart_items[product_id]
             return True
         return False
 
-    def getItemQuantity(self, product_id):
+    def getItemQuantity(self, product_id) -> int:
         """Get the quantity of a specific item in cart"""
         if product_id in self.cart_items:
             return self.cart_items[product_id]['quantity']
@@ -75,7 +75,7 @@ class Transaction:
             return discount_amount
         return 0
 
-    def applyPromoCode(self, code: str):
+    def applyPromoCode(self, code: str) -> bool:
         """Apply a promo code to the transaction"""
         try:
             promo_data = read_data('promocodes.json')
@@ -95,29 +95,25 @@ class Transaction:
 
 
 
-    def getProductSubtotal(self, product_id):
+    def getProductSubtotal(self, product_id) -> float:
         """Get the subtotal for a specific product"""
         if product_id in self.cart_items:
             item = self.cart_items[product_id]
             return item['product'].price * item['quantity']
         return 0
 
-    def getSubTotal(self):
+    def getSubTotal(self) -> float:
         """Calculate the subtotal price of all items in cart before applying promo code"""
         subtotal = 0
         for item_data in self.cart_items.values():
-            product = item_data['product']
+            product: ProductItem = item_data['product']
             quantity = item_data['quantity']
             subtotal += product.price * quantity
         return subtotal
 
-    def getTotal(self):
+    def getTotal(self) -> float:
         """Calculate the total price of all items in cart after applying promo code discount"""
-        subtotal = 0
-        for item_data in self.cart_items.values():
-            product = item_data['product']
-            quantity = item_data['quantity']
-            subtotal += product.price * quantity
+        subtotal = self.getSubTotal()
         
         # Apply promo code discount if available
         if self.promo_code:
@@ -127,15 +123,15 @@ class Transaction:
         
         return subtotal
 
-    def getItemCount(self):
+    def getItemCount(self) -> int:
         """Get total number of items in cart"""
         return sum(item['quantity'] for item in self.cart_items.values())
 
-    def isEmpty(self):
+    def isEmpty(self) -> bool:
         """Check if cart is empty"""
         return len(self.cart_items) == 0
 
-    def save_transaction(self, file_path='transactions.json'):
+    def save_transaction(self, file_path='transactions.json') -> bool:
         """Save the transaction details to a JSON file"""
         try:
             data = read_data(file_path)

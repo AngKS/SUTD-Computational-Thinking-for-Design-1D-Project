@@ -1,9 +1,6 @@
 import streamlit as st
 
-
 class ProductItem():
-
-    _stylesheet_loaded = False  # Class variable to track stylesheet loading
 
     def __init__(self, id, name, price, quantity, description, category, image):
         self.id = id
@@ -13,17 +10,15 @@ class ProductItem():
         self.description = description
         self.category = category
         self.image = image
-        self.load_stylesheet()
 
-    def load_stylesheet(self, css_file='styles.css'):
-        # Only load stylesheet once per session
-        if not ProductItem._stylesheet_loaded:
-            try:
-                with open(css_file) as f:
-                    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-                ProductItem._stylesheet_loaded = True
-            except FileNotFoundError:
-                st.warning("Stylesheet not found. Using default styles.")
+    @staticmethod
+    def load_stylesheet(css_file='styles.css'):
+        """Load stylesheet - should be called once per rerun in app.py"""
+        try:
+            with open(css_file) as f:
+                st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        except FileNotFoundError:
+            st.warning("Stylesheet not found. Using default styles.")
 
     @property
     def is_in_stock(self):

@@ -1,4 +1,5 @@
 from models import App, Transaction
+from models.Product import ProductItem
 from views.AdminPage import AdminPage
 from views.MainPage import MainPage
 from views.CheckoutPage import CheckoutPage
@@ -7,6 +8,9 @@ import streamlit as st
 # Application Launcher
 
 def main():
+    # Load CSS stylesheet on every rerun
+    ProductItem.load_stylesheet()
+    
     app = App.MultiPageApp(title="KSMD Store", icon="./assets/KSMD Logo.png")
     
     # Initialize transaction only if it doesn't exist using factory method
