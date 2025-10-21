@@ -631,6 +631,66 @@
                 "discount_percent": 10
             },
             "total_amount": 791.964
+        },
+        {
+            "transaction_id": "TXN20251021084915",
+            "date": "2025-10-21 08:49:15",
+            "customer": {
+                "email": "Chan.Jackie@yeehaw.com",
+                "name": "Jackie Chan",
+                "address": "123 Main St, Springfield",
+                "country": "Singapore"
+            },
+            "items": [
+                {
+                    "product_id": 1,
+                    "name": "Intel Core i7-13700K",
+                    "price": 419.99,
+                    "base_price": 419.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 6,
+                    "name": "Corsair RM850x 850W PSU",
+                    "price": 149.99,
+                    "base_price": 149.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 5,
+                    "name": "ASUS ROG Strix B650-A",
+                    "price": 196.64,
+                    "base_price": 229.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 3,
+                    "name": "Corsair Vengeance LPX 32GB DDR4",
+                    "price": 80.99,
+                    "base_price": 89.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 14,
+                    "name": "Arctic Liquid Freezer II 280",
+                    "price": 119.99,
+                    "base_price": 119.99,
+                    "quantity": 1
+                },
+                {
+                    "product_id": 24,
+                    "name": "Kingston Fury Beast 16GB DDR4",
+                    "price": 49.49,
+                    "base_price": 54.99,
+                    "quantity": 1
+                }
+            ],
+            "promo_code": null,
+            "bundle_discount": 12,
+            "bundle_discount_label": "\ud83c\udf81 Full Build Bundle - 12% OFF",
+            "subtotal": 1017.09,
+            "total_savings": 122.0508,
+            "total_amount": 895.0392
         }
     ]
 }

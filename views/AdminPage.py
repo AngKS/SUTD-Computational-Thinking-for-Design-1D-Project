@@ -119,6 +119,11 @@ class AdminPage(Page):
         if not filtered_transactions:
             st.warning("No transactions match your search criteria.")
             return
+        
+        # sort transactions by date descending
+        filtered_transactions.sort(key=lambda x: x.get('date', ''), reverse=True)
+        
+
         container = st.container(height=1000)
         with container:
             for idx, transaction in enumerate(filtered_transactions):

@@ -12,29 +12,30 @@
             "base_price": 419.99,
             "pricing_metadata": {
                 "popularity_tier": "normal",
-                "popularity_score": 3,
+                "popularity_score": 4,
                 "pricing_multiplier": 1.0,
                 "badges": [],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 2,
             "name": "NVIDIA GeForce RTX 4070",
-            "price": 509.99,
+            "price": 512.99,
             "quantity": 0,
             "description": "High-performance graphics card with 12GB GDDR6X memory",
             "category": "GPU",
             "image": "Images/RTX 4070.jpg",
             "base_price": 599.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
+                "popularity_tier": "slow",
+                "popularity_score": 1,
+                "pricing_multiplier": 0.855,
                 "badges": [
-                    "\u2744\ufe0f CLEARANCE"
+                    "\ud83d\udca4 SLOW MOVER",
+                    "\ud83d\udcb0 WEEKDAY DEAL"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
@@ -48,32 +49,29 @@
             "base_price": 89.99,
             "pricing_metadata": {
                 "popularity_tier": "normal",
-                "popularity_score": 3,
+                "popularity_score": 4,
                 "pricing_multiplier": 0.9,
                 "badges": [
                     "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 4,
             "name": "Samsung 980 PRO 1TB NVMe SSD",
-            "price": 111.14,
+            "price": 129.99,
             "quantity": 12,
             "description": "PCIe 4.0 NVMe SSD with 7000 MB/s read speeds",
             "category": "Storage",
             "image": "Images/Samsung 980 Pro.jpg",
             "base_price": 129.99,
             "pricing_metadata": {
-                "popularity_tier": "slow",
-                "popularity_score": 1,
-                "pricing_multiplier": 0.855,
-                "badges": [
-                    "\ud83d\udca4 SLOW MOVER",
-                    "\ud83d\udcb0 WEEKDAY DEAL"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 4,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
@@ -90,27 +88,24 @@
                 "popularity_score": 2,
                 "pricing_multiplier": 1.0,
                 "badges": [],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 6,
             "name": "Corsair RM850x 850W PSU",
-            "price": 128.24,
+            "price": 149.99,
             "quantity": 18,
             "description": "80+ Gold modular power supply with quiet operation",
             "category": "PSU",
             "image": "Images/Corsair RM850x 850W PSU.jpg",
             "base_price": 149.99,
             "pricing_metadata": {
-                "popularity_tier": "slow",
-                "popularity_score": 1,
-                "pricing_multiplier": 0.855,
-                "badges": [
-                    "\ud83d\udca4 SLOW MOVER",
-                    "\ud83d\udcb0 WEEKDAY DEAL"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 3,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
@@ -123,214 +118,112 @@
             "image": "Images/Noctua NH-D15.jpg",
             "base_price": 99.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
+                "popularity_tier": "normal",
+                "popularity_score": 2,
                 "pricing_multiplier": 0.9,
                 "badges": [
                     "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 8,
             "name": "Fractal Design Meshify C",
-            "price": 93.49,
+            "price": 109.99,
             "quantity": 14,
             "description": "Compact ATX case with optimized airflow design",
             "category": "Case",
             "image": "Images/Fractal Design Meshify C.jpg",
             "base_price": 109.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 2,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 9,
             "name": "AMD Ryzen 9 7900X",
-            "price": 467.49,
+            "price": 549.99,
             "quantity": 9,
             "description": "12-core, 24-thread processor with 5.6 GHz boost clock",
             "category": "CPU",
             "image": "Images/AMD Ryzen 9 7900X.jpg",
             "base_price": 549.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 3,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 10,
             "name": "Western Digital Black SN850X 2TB",
-            "price": 169.99,
+            "price": 199.99,
             "quantity": 16,
             "description": "High-speed PCIe Gen4 NVMe SSD for gaming",
             "category": "Storage",
             "image": "Images/Western Digital Black SN850X 2TB.jpg",
             "base_price": 199.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 2,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 11,
             "name": "G.Skill Trident Z5 RGB 64GB DDR5",
-            "price": 254.99,
+            "price": 299.99,
             "quantity": 7,
             "description": "64GB DDR5-6000 memory kit with RGB lighting",
             "category": "RAM",
             "image": "Images/G.Skill Trident Z5 RGB 64GB DDR5.jpg",
             "base_price": 299.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 3,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 12,
             "name": "MSI GeForce RTX 4090 Gaming X Trio",
-            "price": 1679.99,
+            "price": 1511.99,
             "quantity": 3,
             "description": "Flagship graphics card with 24GB GDDR6X memory",
             "category": "GPU",
             "image": "Images/MSI GeForce RTX 4090 Gaming X Trio.jpg",
             "base_price": 1599.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 1.05,
+                "popularity_tier": "slow",
+                "popularity_score": 1,
+                "pricing_multiplier": 0.9450000000000001,
                 "badges": [
-                    "\u26a1 LOW STOCK"
+                    "\u26a1 LOW STOCK",
+                    "\ud83d\udcb0 WEEKDAY DEAL"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 13,
             "name": "EVGA SuperNOVA 1000 P5",
-            "price": 161.49,
+            "price": 162.44,
             "quantity": 11,
             "description": "1000W 80+ Platinum fully modular power supply",
             "category": "PSU",
             "image": "Images/EVGA SuperNOVA 1000 P5.jpg",
             "base_price": 189.99,
-            "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
-            }
-        },
-        {
-            "id": 14,
-            "name": "Arctic Liquid Freezer II 280",
-            "price": 101.99,
-            "quantity": 13,
-            "description": "280mm AIO liquid CPU cooler with high performance",
-            "category": "Cooling",
-            "image": "Images/Arctic Liquid Freezer II 280.jpg",
-            "base_price": 119.99,
-            "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
-            }
-        },
-        {
-            "id": 15,
-            "name": "Lian Li PC-O11 Dynamic",
-            "price": 127.49,
-            "quantity": 8,
-            "description": "Premium mid-tower case with tempered glass panels",
-            "category": "Case",
-            "image": "Images/Lian Li PC-O11 Dynamic.jpg",
-            "base_price": 149.99,
-            "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
-            }
-        },
-        {
-            "id": 16,
-            "name": "Seagate Barracuda 4TB HDD",
-            "price": 80.99,
-            "quantity": 20,
-            "description": "4TB 7200 RPM SATA hard drive for mass storage",
-            "category": "Storage",
-            "image": "Images/Seagate Barracuda 4TB HDD.jpg",
-            "base_price": 89.99,
-            "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.9,
-                "badges": [
-                    "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
-            }
-        },
-        {
-            "id": 17,
-            "name": "MSI MAG B550 Tomahawk",
-            "price": 152.99,
-            "quantity": 15,
-            "description": "ATX motherboard with PCIe 4.0 support for AMD Ryzen",
-            "category": "Motherboard",
-            "image": "Images/MSI MAG B550 Tomahawk.jpg",
-            "base_price": 179.99,
-            "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
-            }
-        },
-        {
-            "id": 18,
-            "name": "be quiet! Dark Rock Pro 4",
-            "price": 76.94,
-            "quantity": 19,
-            "description": "Silent CPU cooler with dual-fan design",
-            "category": "Cooling",
-            "image": "Images/be quiet! Dark Rock Pro 4.jpg",
-            "base_price": 89.99,
             "pricing_metadata": {
                 "popularity_tier": "slow",
                 "popularity_score": 1,
@@ -339,37 +232,52 @@
                     "\ud83d\udca4 SLOW MOVER",
                     "\ud83d\udcb0 WEEKDAY DEAL"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
-            "id": 19,
-            "name": "Corsair iCUE 4000X RGB",
-            "price": 114.74,
-            "quantity": 12,
-            "description": "Mid-tower case with RGB fans and airflow optimization",
-            "category": "Case",
-            "image": "Images/Corsair iCUE 4000X RGB.jpg",
-            "base_price": 134.99,
+            "id": 14,
+            "name": "Arctic Liquid Freezer II 280",
+            "price": 119.99,
+            "quantity": 13,
+            "description": "280mm AIO liquid CPU cooler with high performance",
+            "category": "Cooling",
+            "image": "Images/Arctic Liquid Freezer II 280.jpg",
+            "base_price": 119.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 4,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
-            "id": 20,
-            "name": "Intel Core i5-13600K",
-            "price": 259.19,
-            "quantity": 21,
-            "description": "13th Gen Intel processor with 14 cores and 20 threads",
-            "category": "CPU",
-            "image": "Images/Intel Core i5-13600K.jpg",
-            "base_price": 319.99,
+            "id": 15,
+            "name": "Lian Li PC-O11 Dynamic",
+            "price": 149.99,
+            "quantity": 8,
+            "description": "Premium mid-tower case with tempered glass panels",
+            "category": "Case",
+            "image": "Images/Lian Li PC-O11 Dynamic.jpg",
+            "base_price": 149.99,
+            "pricing_metadata": {
+                "popularity_tier": "normal",
+                "popularity_score": 2,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
+            }
+        },
+        {
+            "id": 16,
+            "name": "Seagate Barracuda 4TB HDD",
+            "price": 72.89,
+            "quantity": 20,
+            "description": "4TB 7200 RPM SATA hard drive for mass storage",
+            "category": "Storage",
+            "image": "Images/Seagate Barracuda 4TB HDD.jpg",
+            "base_price": 89.99,
             "pricing_metadata": {
                 "popularity_tier": "slow",
                 "popularity_score": 1,
@@ -378,102 +286,178 @@
                     "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF",
                     "\ud83d\udcb0 WEEKDAY DEAL"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
+            }
+        },
+        {
+            "id": 17,
+            "name": "MSI MAG B550 Tomahawk",
+            "price": 153.89,
+            "quantity": 15,
+            "description": "ATX motherboard with PCIe 4.0 support for AMD Ryzen",
+            "category": "Motherboard",
+            "image": "Images/MSI MAG B550 Tomahawk.jpg",
+            "base_price": 179.99,
+            "pricing_metadata": {
+                "popularity_tier": "slow",
+                "popularity_score": 1,
+                "pricing_multiplier": 0.855,
+                "badges": [
+                    "\ud83d\udca4 SLOW MOVER",
+                    "\ud83d\udcb0 WEEKDAY DEAL"
+                ],
+                "last_updated": "2025-10-21 08:51:14"
+            }
+        },
+        {
+            "id": 18,
+            "name": "be quiet! Dark Rock Pro 4",
+            "price": 89.99,
+            "quantity": 19,
+            "description": "Silent CPU cooler with dual-fan design",
+            "category": "Cooling",
+            "image": "Images/be quiet! Dark Rock Pro 4.jpg",
+            "base_price": 89.99,
+            "pricing_metadata": {
+                "popularity_tier": "normal",
+                "popularity_score": 2,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
+            }
+        },
+        {
+            "id": 19,
+            "name": "Corsair iCUE 4000X RGB",
+            "price": 115.42,
+            "quantity": 12,
+            "description": "Mid-tower case with RGB fans and airflow optimization",
+            "category": "Case",
+            "image": "Images/Corsair iCUE 4000X RGB.jpg",
+            "base_price": 134.99,
+            "pricing_metadata": {
+                "popularity_tier": "slow",
+                "popularity_score": 1,
+                "pricing_multiplier": 0.855,
+                "badges": [
+                    "\ud83d\udca4 SLOW MOVER",
+                    "\ud83d\udcb0 WEEKDAY DEAL"
+                ],
+                "last_updated": "2025-10-21 08:51:14"
+            }
+        },
+        {
+            "id": 20,
+            "name": "Intel Core i5-13600K",
+            "price": 287.99,
+            "quantity": 21,
+            "description": "13th Gen Intel processor with 14 cores and 20 threads",
+            "category": "CPU",
+            "image": "Images/Intel Core i5-13600K.jpg",
+            "base_price": 319.99,
+            "pricing_metadata": {
+                "popularity_tier": "normal",
+                "popularity_score": 2,
+                "pricing_multiplier": 0.9,
+                "badges": [
+                    "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF"
+                ],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 21,
             "name": "Crucial MX4 Thermal Paste",
-            "price": 7.99,
+            "price": 8.99,
             "quantity": 45,
             "description": "High-performance thermal compound for CPU cooling",
             "category": "Cooling",
             "image": "Images/Crucial MX4 Thermal Paste.jpg",
             "base_price": 9.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.8,
+                "popularity_tier": "normal",
+                "popularity_score": 4,
+                "pricing_multiplier": 0.9,
                 "badges": [
-                    "\ud83c\udff7\ufe0f OVERSTOCKED - 20% OFF"
+                    "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 22,
             "name": "ASUS TUF Gaming X570-Plus",
-            "price": 169.99,
+            "price": 170.99,
             "quantity": 10,
             "description": "ATX motherboard with military-grade components",
             "category": "Motherboard",
             "image": "Images/ASUS TUF Gaming X570-Plus.jpg",
             "base_price": 199.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
+                "popularity_tier": "slow",
+                "popularity_score": 1,
+                "pricing_multiplier": 0.855,
                 "badges": [
-                    "\u2744\ufe0f CLEARANCE"
+                    "\ud83d\udca4 SLOW MOVER",
+                    "\ud83d\udcb0 WEEKDAY DEAL"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 23,
             "name": "Seasonic Focus GX-750",
-            "price": 110.49,
+            "price": 129.99,
             "quantity": 17,
             "description": "750W 80+ Gold fully modular power supply",
             "category": "PSU",
             "image": "Images/Seasonic Focus GX-750.jpg",
             "base_price": 129.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
-                "badges": [
-                    "\u2744\ufe0f CLEARANCE"
-                ],
-                "last_updated": "2025-10-21 08:47:09"
+                "popularity_tier": "normal",
+                "popularity_score": 2,
+                "pricing_multiplier": 1.0,
+                "badges": [],
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 24,
             "name": "Kingston Fury Beast 16GB DDR4",
-            "price": 43.99,
+            "price": 49.49,
             "quantity": 30,
             "description": "16GB DDR4-3200 gaming memory with aggressive styling",
             "category": "RAM",
             "image": "Images/Kingston Fury Beast 16GB DDR4.jpg",
             "base_price": 54.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.8,
+                "popularity_tier": "trending",
+                "popularity_score": 5,
+                "pricing_multiplier": 0.9,
                 "badges": [
-                    "\ud83c\udff7\ufe0f OVERSTOCKED - 20% OFF"
+                    "\ud83c\udff7\ufe0f HIGH STOCK - 10% OFF"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         },
         {
             "id": 25,
             "name": "AMD Radeon RX 7800 XT",
-            "price": 424.99,
+            "price": 427.49,
             "quantity": 5,
             "description": "High-performance graphics card with 16GB GDDR6 memory",
             "category": "GPU",
             "image": "Images/AMD Radeon RX 7800 XT.jpg",
             "base_price": 499.99,
             "pricing_metadata": {
-                "popularity_tier": "cold",
-                "popularity_score": 0,
-                "pricing_multiplier": 0.85,
+                "popularity_tier": "slow",
+                "popularity_score": 1,
+                "pricing_multiplier": 0.855,
                 "badges": [
-                    "\u2744\ufe0f CLEARANCE"
+                    "\ud83d\udca4 SLOW MOVER",
+                    "\ud83d\udcb0 WEEKDAY DEAL"
                 ],
-                "last_updated": "2025-10-21 08:47:09"
+                "last_updated": "2025-10-21 08:51:14"
             }
         }
     ]
