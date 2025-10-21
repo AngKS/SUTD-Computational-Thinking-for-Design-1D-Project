@@ -1,0 +1,110 @@
+{
+    "popularity_pricing": {
+        "enabled": true,
+        "time_window_days": 30,
+        "tiers": {
+            "hot": {
+                "min_purchases": 10,
+                "multiplier": 1.10,
+                "label": "🔥 HOT ITEM",
+                "color": "#ff4444"
+            },
+            "trending": {
+                "min_purchases": 5,
+                "multiplier": 1.05,
+                "label": "📈 TRENDING",
+                "color": "#ff8800"
+            },
+            "normal": {
+                "min_purchases": 2,
+                "multiplier": 1.00,
+                "label": "",
+                "color": ""
+            },
+            "slow": {
+                "min_purchases": 1,
+                "multiplier": 0.95,
+                "label": "💤 SLOW MOVER",
+                "color": "#888888"
+            },
+            "cold": {
+                "min_purchases": 0,
+                "multiplier": 0.85,
+                "label": "❄️ CLEARANCE",
+                "color": "#4444ff"
+            }
+        },
+        "max_deviation_percent": 20
+    },
+    "clearance_pricing": {
+        "enabled": true,
+        "rules": [
+            {
+                "stock_threshold": 30,
+                "max_purchases": 2,
+                "discount_percent": 20,
+                "label": "🏷️ OVERSTOCKED - 20% OFF",
+                "priority": 1
+            },
+            {
+                "stock_threshold": 20,
+                "max_purchases": 5,
+                "discount_percent": 10,
+                "label": "🏷️ HIGH STOCK - 10% OFF",
+                "priority": 2
+            }
+        ],
+        "low_stock_threshold": 5,
+        "low_stock_premium": 1.05,
+        "low_stock_label": "⚡ LOW STOCK"
+    },
+    "flash_pricing": {
+        "enabled": true,
+        "rules": [
+            {
+                "name": "Weekend Boost",
+                "day_of_week": [6, 7],
+                "tier_filter": "trending",
+                "multiplier": 1.05,
+                "label": "🎉 WEEKEND SPECIAL"
+            },
+            {
+                "name": "Weekday Clearance",
+                "day_of_week": [1, 2, 3],
+                "tier_filter": "slow",
+                "multiplier": 0.90,
+                "label": "💰 WEEKDAY DEAL"
+            }
+        ]
+    },
+    "bundle_discounts": {
+        "enabled": true,
+        "rules": [
+            {
+                "min_items": 5,
+                "discount_percent": 12,
+                "label": "🎁 Full Build Bundle - 12% OFF",
+                "priority": 1
+            },
+            {
+                "min_items": 3,
+                "categories": ["CPU", "Motherboard", "RAM"],
+                "discount_percent": 8,
+                "label": "💻 Core Components Bundle - 8% OFF",
+                "priority": 2
+            },
+            {
+                "min_items": 3,
+                "discount_percent": 5,
+                "label": "📦 Multi-Item Bundle - 5% OFF",
+                "priority": 3
+            }
+        ]
+    },
+    "pricing_display": {
+        "show_base_price": true,
+        "show_savings": true,
+        "show_badges": true,
+        "show_price_history": false
+    }
+}

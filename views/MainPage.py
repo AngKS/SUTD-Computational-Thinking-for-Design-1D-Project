@@ -18,6 +18,9 @@ class MainPage(Page):
         self._products = [ProductItem(**item) for item in inventory["products"]]
 
     def display(self):
+        # Load stylesheet at the beginning of each render
+        ProductItem.load_stylesheet()
+        
         # st.image("Images/KSMD Logo.png")
         # st.write("Use the sidebar to navigate to different sections.")
         # Show product grid

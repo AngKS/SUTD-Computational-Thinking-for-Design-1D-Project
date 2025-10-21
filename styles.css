@@ -46,6 +46,21 @@
     cursor: not-allowed;
 }
 
+/* Badge styles for dynamic pricing */
+.product-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 2px 4px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 /* Horizontal flex layout for product cards */
 .product-card-horizontal {
     display: flex;

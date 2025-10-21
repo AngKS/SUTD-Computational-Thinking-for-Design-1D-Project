@@ -166,9 +166,42 @@ class CheckoutPage(Page):
 
                         st.divider()
 
-                # Display total
-                st.write(f"Subtotal: {transaction.getSubTotal():.2f}")
-                st.subheader(f"**Total: ${transaction.getTotal():.2f}**")
+                # Update bundle discount
+                transaction.updateBundleDiscount()
+                
+                # Display pricing breakdown
+                subtotal = transaction.getSubTotal()
+                promo_discount = transaction.calculatePromoDiscount(subtotal)
+                bundle_discount = transaction.calculateBundleDiscount(subtotal)
+                total = transaction.getTotal()
+                
+                st.write("### 💰 Pricing Summary")
+                st.write(f"**Subtotal:** ${subtotal:.2f}")
+                
+                # Show promo discount if applied
+                if promo_discount > 0:
+                    st.write(f"**Promo Discount ({transaction.promo_code['discount_percent']}%):** -${promo_discount:.2f}")
+                
+                # Show bundle discount if applied
+                if bundle_discount > 0:
+                    st.success(f"✅ {transaction.bundle_discount_label}")
+                    st.write(f"**Bundle Discount ({transaction.bundle_discount}%):** -${bundle_discount:.2f}")
+                
+                # Show next bundle tier if available
+                from services.pricing_engine import PricingEngine
+                engine = PricingEngine()
+                next_tier = engine.get_next_bundle_tier(transaction.cart_items)
+                if next_tier and next_tier['items_needed'] > 0:
+                    st.info(f"💡 Add {next_tier['items_needed']} more item(s) to unlock {next_tier['discount_percent']}% bundle discount!")
+                
+                st.divider()
+                st.subheader(f"**Total: ${total:.2f}**")
+                
+                # Show total savings
+                total_savings = transaction.getTotalSavings()
+                if total_savings > 0:
+                    st.success(f"🎉 You're saving ${total_savings:.2f}!")
+                
                 self.discount_code(transaction=transaction)
 
                 checkout_btn = st.button("Checkout", type="primary", use_container_width=True)

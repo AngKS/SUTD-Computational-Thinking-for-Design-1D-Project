@@ -68,3 +68,27 @@ def autofill_billing_info():
         'same_billing': True,
         'errors': {}
     }
+
+# Pricing utility functions
+def read_pricing_config(config_path='pricing_config.json') -> dict:
+    """Read pricing configuration from JSON file"""
+    return read_data(config_path)
+
+def write_pricing_config(config: dict, config_path='pricing_config.json') -> bool:
+    """Write pricing configuration to JSON file"""
+    return write_data(config_path, config)
+
+
+# one-click auto-populate billing info for testing
+def autofill_billing_info():
+    return {
+        'email': 'john.doe@me.com',
+        'name': 'John Doe',
+        'address': '123 Main St, Springfield',
+        'country': 'Singapore',
+        'card_number': '4111 1111 1111 1111',
+        'expiry_date': '12/25',
+        'cvv': '123',
+        'same_billing': True,
+        'errors': {}
+    }
