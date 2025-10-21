@@ -80,12 +80,6 @@ class PricingEngine:
     def get_popularity_tier(self, purchase_count: int) -> str:
         """
         Determine popularity tier based on purchase count
-        
-        Args:
-            purchase_count: Number of purchases in time window
-        
-        Returns:
-            Tier name: 'hot', 'trending', 'normal', 'slow', or 'cold'
         """
         if not self.config['popularity_pricing']['enabled']:
             return 'normal'
@@ -115,13 +109,7 @@ class PricingEngine:
     def calculate_clearance_discount(self, product, transactions: list) -> Tuple[float, str]:
         """
         Calculate clearance discount based on inventory levels
-        
-        Args:
-            product: ProductItem object
-            transactions: List of transaction records
-        
-        Returns:
-            Tuple of (discount_multiplier, label)
+
         """
         if not self.config['clearance_pricing']['enabled']:
             return 1.0, ""
