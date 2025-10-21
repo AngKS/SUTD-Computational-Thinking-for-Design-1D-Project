@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import streamlit as st
-load_dotenv()
+# load_dotenv()
 
 # OpenAI API Configuration
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
