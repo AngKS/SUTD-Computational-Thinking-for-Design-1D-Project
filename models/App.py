@@ -1,7 +1,7 @@
 import streamlit as st
 from models.Page import Page
 """
-Kah Shin was here
+Secret: Nicholas is hiding something.... :0
 """
 # Handle Page Navigation
 class MultiPageApp:
